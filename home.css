@@ -1,5 +1,10 @@
 body {
 	background-color: #FFE6E1;
+	
+}
+#page {
+	margin: 0 auto;
+	width: 800px;
 }
 /*menu-bar*/
 ul {
@@ -7,11 +12,11 @@ ul {
 }
 
 ul.menu-bar{
-	font-size: 12px;
+	font-size: 20px;
 	padding: 0;
 	margin: 0;
 	overflow: hidden;
-	width: 150px;
+	width: 200px;
 	margin: auto auto;
 }
 
@@ -27,35 +32,26 @@ a {
 	text-decoration: none;
 }
 .menu>img {
-	width: 35px;
+	width: 50px;
 	float: left;
 }
-
-.footer {
-	width:100%; 
+/*footer*/
+.footer { 
+	width: 800px;
+	text-align: center;
 	height:40px; 
 	line-height:35px;
 	background:#E83F63; 
-	position:fixed; 
-	bottom:0px; 
-	left:0px; 
+	position: fixed;
+	bottom: 0;
 	font-size:12px; 
 	color:white; 
 	text-align:center;
 }
+
 /*welcome*/
 div.welcome {
 	text-align: center;
+	font-size: 30px;
 }
 
-/*Lab0*/
-div.Lab0_image {
-	width: 200px;
-}
-div.png_name {
-	position: fixed;
-	left: 60px;
-	width: 100px;
-	text-align: center;
-	font-size: 12px;
-}
