@@ -11,5 +11,6 @@ ul.Lab li {
 	float: left;
 }
 ul.Lab li a:hover {
-	border: 3px solid black;
+	border: 3px solid #E83F63;
+	background-color: #FCB6C2;
 }

@@ -14,10 +14,9 @@ ul {
 ul.menu-bar{
 	font-size: 20px;
 	padding: 0;
-	margin: 0;
+	margin: -10 auto;
 	overflow: hidden;
-	width: 200px;
-	margin: auto auto;
+
 }
 
 .menu-bar li {
@@ -30,11 +29,13 @@ ul.menu-bar{
 }
 a {
 	text-decoration: none;
+	color: black;
 }
-.menu>img {
-	width: 50px;
+.menu img{
 	float: left;
 }
+
+
 /*footer*/
 .footer { 
 	width: 800px;
@@ -55,3 +56,39 @@ div.welcome {
 	font-size: 30px;
 }
 
+div.welcome{
+	height: 400px;
+	/*background-color: #E39996;*/
+}
+
+/*模块导航*/
+#back-container {
+	position: relative;
+	top: 130px;
+	width: 450px;
+	background-color:#F3FDCB;
+	opacity: 0.8;/*透明度*/
+	border-radius: 30px;
+	margin: 10px;
+	padding: 20px;
+	z-index: 999;
+}
+div.back-container span{
+	font-size: 25px;
+	margin: 8px 0;
+}
+.content{
+	text-align: left;
+	margin: 0 40px;;
+}
+.content:hover{
+	background-color: #CBC79D;
+}
+#back {
+	position: relative;
+	width: 400px;
+	height: 400px;
+	float: right;
+	top: -230px;
+	z-index: 1;
+}
