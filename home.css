@@ -1,6 +1,5 @@
 body {
-	background-color: #FFE6E1;
-	
+	background:lightyellow;
 }
 #page {
 	margin: 0 auto;
@@ -25,7 +24,7 @@ ul.menu-bar{
 .menu-bar li a{
 	display: block;
 	padding: 10px;
-	color: #E83F63;
+	color: black;
 }
 a {
 	text-decoration: none;
@@ -36,19 +35,7 @@ a {
 }
 
 
-/*footer*/
-.footer { 
-	width: 800px;
-	text-align: center;
-	height:40px; 
-	line-height:35px;
-	background:#E83F63; 
-	position: fixed;
-	bottom: 0;
-	font-size:12px; 
-	color:white; 
-	text-align:center;
-}
+
 
 /*welcome*/
 div.welcome {
@@ -66,7 +53,8 @@ div.welcome{
 	position: relative;
 	top: 130px;
 	width: 450px;
-	background-color:#F3FDCB;
+	background-color: #D06168;
+	color: white;
 	opacity: 0.8;/*透明度*/
 	border-radius: 30px;
 	margin: 10px;
@@ -81,8 +69,15 @@ div.back-container span{
 	text-align: left;
 	margin: 0 40px;;
 }
+.content a{
+	color: white;
+}
 .content:hover{
 	background-color: #CBC79D;
+	color: black;
+}
+.content a:hover{
+	color: black;
 }
 #back {
 	position: relative;
