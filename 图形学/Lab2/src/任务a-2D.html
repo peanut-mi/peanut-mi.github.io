@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <link type='text/css' rel='stylesheet' href='../../../home.css'>
+    <title>Chap2 Demo Sierpinski Gasket </title>
+    <script id="vertex-shader" type="x-shader/x-vertex">
+	attribute vec4 vPosition;
+	void main(){
+		gl_Position = vPosition;
+	}
+	</script>
+
+    <script id="fragment-shader" type="x-shader/x-fragment">
+	precision mediump float;
+	void main(){
+		gl_FragColor = vec4( 1.0, 0.0, 0.0, 1.0 );
+	}
+	</script>
+
+    <script type="text/javascript" src="js/common/webgl-utils.js"></script>
+    <script type="text/javascript" src="js/common/initShaders.js"></script>
+    <script type="text/javascript" src="js/common/gl-matrix-min.js"></script>
+
+   
+</head>
+
+<body>
+    <h2>Sierpinski Gasket in 2D</h2><hr>
+
+    <div style='padding:10px'>
+        <div style='font-size:15px;'>请输入三角形的层数（0-7）</div>
+        <input id='times' type='text'>
+        <button type = 'button' onclick = 'initTriangles()' >生成图像</button>
+        <p id='out'></p>
+    </div>
+
+    <script type="text/javascript" src="js/ch02/gasket-triangles.js"></script>
+
+    <canvas id="gl-canvas" width="512" height="512" style='padding:20px'>你的浏览器不支持HTML5 canvas元素</canvas>
+    <p><b>注：</b>仅支持运行一次，若需要重新生成请刷新页面。</p>
+</body>
+
+</html>
