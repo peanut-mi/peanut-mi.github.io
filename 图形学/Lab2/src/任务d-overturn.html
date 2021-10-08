@@ -4,17 +4,19 @@
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 		<title>SierPinski三角形</title>
 		<link href="../../../home.css" rel="stylesheet" type="text/css" />
-		<script type="text/javascript" src="js/ch02/c-line.js"></script>
+		<script type="text/javascript" src="js/ch02/d-overturn.js"></script>
 	</head>
 	<body>
         <h3>Sierpinski Gasket</h3><hr>
         <div style='padding:10px'>
-            <div style='font-size:15px;'>请输入三角形的层数（0-7）</div>
+            <div style='font-size:15px;'>请输入三角形的层数（0-7） 输入旋转的角度</div>
             <input id='times' type='text'>
+			<input id='theta' type='text'>
             <button type = 'button' onclick = 'draw()' >生成图像</button>
             <p id='out'></p>
+
         </div>
 		<br />
-		<canvas id="gl-canvas" width="600" height="600"></canvas>
+		<canvas id="gl-canvas" width="800" height="600"></canvas>
 	</body>
 </html>

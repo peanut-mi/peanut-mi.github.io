@@ -8,21 +8,10 @@ var gl;
 var points = [];
 var numTimesToSubdivide;
 
-function getTimes(){
-	var content = document.getElementById('times').value;
-	
-	if(content.isNaN) alert('你的输入不是一个数字!'+content);
-	else if(content<0||content>7) alert('你的输入数字'+content+'不在规定范围内！');
-	else return content;
-	
-}
-
-// numTimesToSubdivide = getTimes();
-
 function initTriangles(){
-	//numTimesToSubdivide = 3;
-	numTimesToSubdivide = getTimes();
 	
+	numTimesToSubdivide = parseInt(document.getElementById('times').value);
+
 	canvas = document.getElementById( "gl-canvas" );
 
 	gl = WebGLUtils.setupWebGL( canvas );
@@ -48,12 +37,14 @@ function initTriangles(){
 	// var w = vec3.create();
 	// vec3.set( w, 1, -1, 0 );
 	var w = vec3.fromValues( vertices[6], vertices[7], vertices[8] );
+	
 
 	divideTriangle( u, v, w, numTimesToSubdivide );
-
+	
 	// configure webgl
 	gl.viewport( 0, 0, canvas.width, canvas.height );
 	gl.clearColor( 1.0, 1.0, 1.0, 1.0 );
+	gl.clear(gl.COLOR_BUFFER_BIT);	
 
 	// load shaders and initialise attribute buffers
 	var program = initShaders( gl, "vertex-shader", "fragment-shader" );
