@@ -83,12 +83,6 @@ function draw() {
 			y3-=hoffset;
 		}
 		
-		// x1 = a1*Math.cos(theta)-b1*Math.sin(theta)+500;
-		// y1 = b1*Math.cos(theta)+a1*Math.sin(theta)-200;
-		// x2 = a2*Math.cos(theta)-b2*Math.sin(theta)+500;
-		// y2 = b2*Math.cos(theta)+a2*Math.sin(theta)-200;
-		// x3 = a3*Math.cos(theta)-b3*Math.sin(theta)+500;
-		// y3 = b3*Math.cos(theta)+a3*Math.sin(theta)-200;
 		console.log('x1:'+x1+',y1:'+y1);
 		console.log('x2:'+x2+',y2:'+y2);
 		console.log('x3:'+x3+',y3:'+y3);

@@ -85,3 +85,12 @@ div.back-container span{
 	top: -230px;
 	z-index: 1;
 }
+
+button{
+	background-color: #C49866;
+	color: white;
+	margin: 10px;
+}
+button:hover {
+	background-color:black;
+}

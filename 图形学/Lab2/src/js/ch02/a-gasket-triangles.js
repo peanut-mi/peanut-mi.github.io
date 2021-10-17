@@ -44,7 +44,6 @@ function initTriangles(){
 	// configure webgl
 	gl.viewport( 0, 0, canvas.width, canvas.height );
 	gl.clearColor( 1.0, 1.0, 1.0, 1.0 );
-	gl.clear(gl.COLOR_BUFFER_BIT);	
 
 	// load shaders and initialise attribute buffers
 	var program = initShaders( gl, "vertex-shader", "fragment-shader" );
@@ -100,4 +99,9 @@ function divideTriangle( a, b, c, count ){
 function renderTriangles(){
 	gl.clear( gl.COLOR_BUFFER_BIT );
 	gl.drawArrays( gl.TRIANGLES, 0, points.length/3 );
+}
+
+function renderLine(){
+	gl.clear(gl.COLOR_BUFFER_BIT);
+	gl.drawArrays(gl.LINES, 0, points.length/3);
 }
