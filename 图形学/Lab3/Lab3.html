@@ -14,18 +14,23 @@
     
         <script id="fragment-shader" type="x-shader/x-fragment">
             precision mediump float;
-            varying vec4 pColor;
-
+            
+            uniform vec4 u_color;
             void main(){
-                /*gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);*/
-                if(gl_FragCoord.y < 128.0){
-                    gl_FragColor = vec4(0.53, 0.0, 0.08, 1.0);//136,0,21
-                }else{
-                    gl_FragColor = vec4(0.13 ,0.69 ,0.30, 1.0);//34,177,76分别除256
-                }
-
+                gl_FragColor = u_color;
             }
         </script>
+        <!-- varying vec4 pColor;
+
+        void main(){
+            /*gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);*/
+            if(gl_FragCoord.y < 128.0){
+                gl_FragColor = vec4(0.53, 0.0, 0.08, 1.0);//136,0,21
+            }else{
+                gl_FragColor = vec4(0.13 ,0.69 ,0.30, 1.0);//34,177,76分别除256
+            }
+        } -->
+
         <!--points-->
         <script id="vertex-shader-p" type="x-shader/x-vertex">
             attribute vec4 vPosition;
@@ -90,30 +95,10 @@
         <h2>Lab3</h2><hr>
         <div>
             <h3>任务b：自己的那辐图</h3>
-            <button id='show' onclick='initSquare()'>装饰树</button><br>
+            <button id='show' onclick='decoration()'>装饰树</button><br>
             
             <canvas id='chirstmas-tree' height='512' width='512'></canvas>
 
-            <!-- <script type='text/javascript'>
-                function decoration(){
-                    var canvas = document.getElementById('chirstmas-tree');
-                    //获得2维绘图的上下文
-                    var ctx=canvas.getContext("2d");
-                    
-                    //设置线宽
-                    ctx.lineWidth=10;
-                    //设置线的颜色
-                    ctx.strokeStyle="blue";
-                    
-                    //将画笔移动到00点
-                    ctx.moveTo(0,0);
-                    //画线到800，600的坐标
-                    ctx.lineTo(100,100);
-                    
-                    //执行画线
-                    ctx.stroke();
-                }
-                
             </script> -->
         </div>
         <div>

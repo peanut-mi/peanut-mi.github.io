@@ -1,74 +1,36 @@
+html{
+	background: url(img/flo.jpg);
+}
 body {
 	background:lightyellow;
 	margin: 0 auto;
-	width: 800px;
+	width: 70%;
+	opacity: 0.95;
+	font-family: ‘Courier New’, Courier, monospace;
 }
-/*menu-bar*/
-ul {
-	list-style-type: none;
-}
-
-ul.menu-bar{
-	font-size: 20px;
-	padding: 0;
-	margin: -10 auto;
-	overflow: hidden;
-
-}
-
-.menu-bar li {
-	float: left;
-}
-.menu-bar li a{
-	display: block;
-	padding: 10px;
-	color: black;
-}
-a {
-	text-decoration: none;
-	color: black;
-}
-.menu img{
-	float: left;
-}
-
-
-
 
 /*welcome*/
 div.welcome {
 	text-align: center;
 	font-size: 30px;
-}
-
-div.welcome{
 	height: 400px;
-	/*background-color: #E39996;*/
+	width: 70%;
+	margin: 0 auto;
+	background-color: lightyellow;
+	opacity: 0.95;
+
+	position: fixed;
+	top: 80px;
+
+	font-family: ‘Courier New’, Courier, monospace;
 }
 
-/*模块导航*/
-#back-container {
-	position: relative;
-	top: 130px;
-	width: 450px;
-	background-color: #D06168;
-	color: white;
-	opacity: 0.8;/*透明度*/
-	border-radius: 30px;
-	margin: 10px;
-	padding: 20px;
-	z-index: 999;
-}
-div.back-container span{
-	font-size: 25px;
-	margin: 8px 0;
-}
 .content{
 	text-align: left;
-	margin: 0 40px;;
+	width: 60%;
 }
 .content a{
-	color: white;
+	color: black;;
 }
 .content:hover{
 	background-color: #CBC79D;
@@ -77,17 +39,18 @@ div.back-container span{
 .content a:hover{
 	color: black;
 }
-#back {
-	position: relative;
-	width: 400px;
-	height: 400px;
-	float: right;
-	top: -230px;
-	z-index: 1;
+
+
+ul {
+	list-style-type: none;
+}
+a {
+	text-decoration: none;
+	color: black;
 }
 
 button{
-	background-color: #C49866;
+	background-color: #8FAB65;
 	color: white;
 	margin: 10px;
 }
