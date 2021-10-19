@@ -1,6 +1,6 @@
 "use strict";
 
-const { vec3 } = glMatrix;
+// const { vec3 } = glMatrix;
 
 var gl;
 var canvas;
@@ -19,7 +19,7 @@ function getTimes(){
 	
 }
 
-function init() {
+function initTriangles3d() {
     numTimesToSubdivide = getTimes();
     canvas = document.getElementById("gl-canvas");
 
@@ -63,7 +63,7 @@ function init() {
     gl.enable(gl.DEPTH_TEST);
 
     // load shaders and initialize attribute buffers
-    var program = initShaders(gl, "vertex-shader", "fragment-shader");
+    var program = initShaders(gl, "vertex-shader-3d", "fragment-shader-3d");
     gl.useProgram(program);
 
     // create buffer object, initialize it, and associate it with
@@ -153,5 +153,7 @@ function divideTetra(a, b, c, d, count) {
 
 function render() {
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+    // gl.clearColor(1.0, 1.0, 1.0, 1.0);
+    // glClear(GL_COLOR_BUFFER_BIT);
     gl.drawArrays(gl.TRIANGLES, 0, points.length / 3);
 }

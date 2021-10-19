@@ -8,14 +8,101 @@
                 color: #388695;
                 font-family: bold;
             }
+            fieldset{
+                width: 70%;
+            }
         </style>
+
+        <!--任务a-->
+        <script id="vertex-shader-2d" type="x-shader/x-vertex">
+            attribute vec4 vPosition;
+            void main(){
+                gl_Position = vPosition;
+            }
+        </script>
+
+        <script id="fragment-shader-2d" type="x-shader/x-fragment">
+            precision mediump float;
+            void main(){
+                gl_FragColor = vec4( 1.0, 0.0, 0.0, 1.0 );
+            }
+        </script>
+        <!--任务b-->
+        <script id="vertex-shader-3d" type="x-shader/x-vertex">
+            attribute vec3 vPosition;
+            attribute vec3 vColor;
+            varying vec4 color;
+        
+            void main(){
+                gl_Position = vec4( vPosition, 1.0 );
+                color = vec4( vColor, 1.0 );
+            }
+        </script>
+    
+        <script id="fragment-shader-3d" type="x-shader/x-fragment">
+            precision mediump float;
+            varying vec4 color;
+            void main(){
+                gl_FragColor = color;
+            }
+        </script>
+        
+
+        <script type="text/javascript" src="src/js/common/webgl-utils.js"></script>
+        <script type="text/javascript" src="src/js/common/initShaders.js"></script>
+        <script type="text/javascript" src="src/js/common/gl-matrix-min.js"></script>
+        <script type="text/javascript" src="src/js/ch02/a-gasket-triangles.js"></script>
+
+        <script type="text/javascript" src="src/js/ch02/b-gasket-3d.js"></script>
+        <!-- <script type="text/javascript" src="src/js/ch02/c-gasket-triangles.js"></script> -->
+        <script type="text/javascript" src="src/js/ch02/d-overturn.js"></script>
     </head>
     <body>
     
         <h3>Lab2</h3>
         <hr>
-        
-        <p>任务a，2D三角形：<a href = 'src/任务a-2D.html'>结果显示</a></p>
+
+        <script>
+            function initTriangles(){
+                var temp = document.getElementsByName('jihe');
+                for(var i=0; i<temp.length; i++){
+                    if(temp[i].checked){
+                        var value = parseInt(temp[i].value);
+                        if(value == 1||value == 2){
+                            initTriangles2d();
+                            console.log(2);
+                        }
+                        else if(value == 3){
+                            initTriangles3d();
+                            console.log(3);
+                        }
+                    }
+                }
+            }
+            
+        </script>
+
+        <fieldset>
+            <legend>整体展示</legend>
+            <label>三角形层数(0-7)：</label><input id='times' type='text'>
+            <button type = 'button' onclick = 'initTriangles()' >生成图像</button><br>
+            <label>选择模式：</label>
+            <input type='radio' name='jihe' value='1'>线框
+            <input type='radio' name='jihe' checked='checked' value='2'>2d
+            <input type='radio' name='jihe' value='3'>3d<br>
+            <label>旋转角度：</label><input type='text' id='degree'><br>
+            
+            <canvas id="gl-canvas" width="300" height="300" style='padding:20px'>你的浏览器不支持HTML5 canvas元素</canvas><br>
+            
+            
+            <label style='size:8px;'>目前还存在的问题：<br>
+                1.线框只实现了层数从小到大。<br>
+                2.2D、3D只实现了层数从大到小。<br>
+                3.3D在操作前不能操作2D或者线框，没有清楚掉缓冲区。<br>
+            </label>
+        </fieldset>
+
+
         <p>任务b，3D三角形：<a href = 'src/任务b-3D.html'>结果显示</a></p>
         <p>任务c，线框三角形：<a href = 'src/任务c-line.html'>结果显示</a></p>
         <p>任务d，旋转三角形：<a href = 'src/任务d-overturn.html'>结果显示</a></p>
