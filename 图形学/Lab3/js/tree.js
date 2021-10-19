@@ -8,7 +8,7 @@ var maxNumVertices = 3 * maxNumTriangles;
 var index = 0;
 
 var colorUniformLocation;
-var paint = false;
+
 
 
 var colors = [
@@ -21,7 +21,7 @@ var colors = [
 	0.0, 1.0, 1.0, 1.0  // cyan
 ];
 
-window.onload = function init(){
+function init(){
 	var canvas = document.getElementById( "chirstmas-tree" );
 	gl = WebGLUtils.setupWebGL( canvas );
 	//var ctx = canvas.getContext('2d');
@@ -45,12 +45,8 @@ window.onload = function init(){
 		-0.25, -0.5,
 		0.25, -0.5,
 		0.25, -1.0,
-		
-		// -0.1, 0.7,
-		// -0.1, 0.9,
-		// 0.1, 0.9,
-		// 0.1, 0.7,
 
+		//顶部圈
 		-0.05, 0.7,
 		-0.1, 0.75,
 		-0.1, 0.85,
@@ -59,6 +55,33 @@ window.onload = function init(){
 		0.1, 0.85,
 		0.1, 0.75,
 		0.05, 0.7,
+
+		//里部圈
+		//up
+		-0.3, 0.33,
+		-0.3, 0.43,
+		-0.2, 0.43,
+		-0.2, 0.33,
+		
+		0.13, 0.54,
+		0.13, 0.62,
+		0.05, 0.62,
+		0.05, 0.54, 
+		//down
+		-0.3, -0.23,
+		-0.3, -0.43,
+		-0.1, -0.43,
+		-0.1, -0.23,
+
+		0.13, 0.04,
+		0.13, 0.12,
+		0.05, 0.12,
+		0.05, 0.04, 
+
+		0.33, -0.32,
+		0.33, -0.44,
+		0.45, -0.44,
+		0.45, -0.32, 
 	];
 
 
@@ -84,6 +107,21 @@ window.onload = function init(){
 	gl.clear( gl.COLOR_BUFFER_BIT );
 	
 	colorUniformLocation = gl.getUniformLocation(program, "u_color");
+	
+	Tree();
+
+	var decvalue = document.getElementsByName('decoration');
+	if(decvalue[0].checked){
+		TopDecoration();
+	}
+	if(decvalue[1].checked){
+		InDecoration();
+	}
+	
+	
+	// render();
+}
+function Tree(){
 	gl.uniform4f(colorUniformLocation, 0.13 ,0.69 ,0.3, 1.0);
 	gl.drawArrays( gl.TRIANGLES, 0, 3 );
 	gl.uniform4f(colorUniformLocation, 0.53, 0.0, 0.08, 1.0);
@@ -97,25 +135,53 @@ window.onload = function init(){
 	gl.drawArrays(gl.LINE_LOOP, 3, 3);
 	gl.uniform4f(colorUniformLocation, 0.53, 0.0, 0.08, 1.0);
 	gl.drawArrays( gl.TRIANGLE_FAN, 6, 4 );//从6开始画4个点
-
-	if(paint){
-		gl.uniform4f(colorUniformLocation, 1.0, 0.0, 0.0, 1.0);
-		gl.drawArrays( gl.TRIANGLE_FAN, 10, 8 );
-		
-		gl.uniform4f(colorUniformLocation, 0.53, 0.0, 0.08, 1.0);
-		gl.drawArrays(gl.LINE_LOOP, 10, 8);
-	}
-
-	// render();
 }
 
-function decoration(){
-	paint = true;
-	console.log(paint);
-
+function TopDecoration(){
+	gl.uniform4f(colorUniformLocation, 1.0, 0.0, 0.0, 1.0);
+	gl.drawArrays( gl.TRIANGLE_FAN, 10, 8 );
 	
+	gl.uniform4f(colorUniformLocation, 0.53, 0.0, 0.08, 1.0);
+	gl.drawArrays(gl.LINE_LOOP, 10, 8);
 }
 
+function InDecoration(){
+	//up
+	//形状
+	gl.uniform4f(colorUniformLocation, 1.0, 0.95, 0.0, 1.0);//255,242,0
+	gl.drawArrays( gl.TRIANGLE_FAN, 18, 4 );
+	//边框
+	gl.uniform4f(colorUniformLocation, 0.53, 0.0, 0.08, 1.0);
+	gl.drawArrays(gl.LINE_LOOP, 18, 4);
+
+	gl.uniform4f(colorUniformLocation, 0.6, 0.85, 0.91, 1.0);//153,217,234
+	gl.drawArrays( gl.TRIANGLE_FAN, 22, 4 );
+	
+	gl.uniform4f(colorUniformLocation, 0.53, 0.0, 0.08, 1.0);
+	gl.drawArrays(gl.LINE_LOOP, 22, 4);
+	//down
+	gl.uniform4f(colorUniformLocation, 0.6, 0.85, 0.91, 1.0);//153,217,234
+	gl.drawArrays( gl.TRIANGLE_FAN, 26, 4 );
+	
+	gl.uniform4f(colorUniformLocation, 0.53, 0.0, 0.08, 1.0);
+	gl.drawArrays(gl.LINE_LOOP, 26, 4);
+
+	gl.uniform4f(colorUniformLocation, 1.0, 0.95, 0.0, 1.0);//153,217,234
+	gl.drawArrays( gl.TRIANGLE_FAN, 30, 4 );
+	
+	gl.uniform4f(colorUniformLocation, 0.53, 0.0, 0.08, 1.0);
+	gl.drawArrays(gl.LINE_LOOP, 30, 4);
+
+	gl.uniform4f(colorUniformLocation, 1.0, 0.95, 0.0, 1.0);//153,217,234
+	gl.drawArrays( gl.TRIANGLE_FAN, 34, 4 );
+	
+	gl.uniform4f(colorUniformLocation, 0.53, 0.0, 0.08, 1.0);
+	gl.drawArrays(gl.LINE_LOOP, 34, 4);
+}
+
+
+
+/**未实现 */
 function ClickPoints(){
 	canvas = document.getElementById( "christmas-tree" );
 	gl = WebGLUtils.setupWebGL( canvas );

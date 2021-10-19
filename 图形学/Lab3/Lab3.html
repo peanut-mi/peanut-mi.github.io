@@ -4,6 +4,11 @@
         <meta http-equiv = 'Content-Type' content='text/html; charset=utf-8'>
         <link type='text/css' rel='stylesheet' href='../../home.css'>
         <title>Lab3</title>
+        <style>
+            body{
+                padding: 10px;
+            }
+        </style>
         <!--tree-->
         <script id="vertex-shader" type="x-shader/x-vertex">
             attribute vec4 vPosition;
@@ -95,11 +100,13 @@
         <h2>Lab3</h2><hr>
         <div>
             <h3>任务b：自己的那辐图</h3>
-            <button id='show' onclick='decoration()'>装饰树</button><br>
+            <button id='show' onclick='init()'>装饰树</button>
+            <input type='checkbox' name='decoration' id='top' checked='checked'>顶部装饰
+            <input type='checkbox' name='decoration' id='in' checked='checked'>里部装饰<br>
             
-            <canvas id='chirstmas-tree' height='512' width='512'></canvas>
+            <canvas id='chirstmas-tree' height='300' width='300'></canvas>
 
-            </script> -->
+            </script>
         </div>
         <div>
             <h3>任务a：旋转的多边形</h3>
