@@ -1,0 +1,19 @@
+fieldset {
+    margin: 20px;
+    width: 500px;
+}
+button{
+	/*外观*/
+	border: none;
+	padding: 4px;
+	margin: 20px 250px;
+	background-color: #396371;
+	color: white;
+    width: 40px;
+}
+label {
+    display: inline-block;
+	float: left;
+	width: 200px;
+	text-align:right;
+}

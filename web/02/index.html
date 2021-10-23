@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>税收计算</title>
+        <meta charset='UTF-8'>
+		<link href='cac.css' type='text/css' rel='stylesheet'>
+		<link type='text/css' rel='stylesheet' href='../back.css'>
+
+    </head>
+    <body>
+        <h2>2021-9-29 计算个人所得税</h2>
+		<hr>
+        <script>
+			var pobject = {//json个人所得税对象
+				ndeduce:3500,
+				trtable:[
+					less15={
+						trate:0.03,
+						kcs:0
+					},
+					less45={
+						trate:0.1,
+						kcs:105
+					},
+					less90={
+						trate:0.2,
+						kcs:555
+					},
+					less350={
+						trate:0.25,
+						kcs:1005
+					},
+					less550={
+						trate:0.3,
+						kcs:2755
+					},
+					less800={
+						trate:0.35,
+						kcs:5505
+					},
+					over={
+						trate:0.45,
+						kcs:13505
+					}
+				],
+			}
+			
+			function judgelevel(salary){
+				//判断是税率级，返回trtable的下标
+				if(salary<=1500){
+				    return 0;
+				}
+				else if(salary<=4500){
+				    return 1;
+				}
+				else if(salary<=9000){
+				    return 2;
+				}
+				else if(salary<=35000){
+				    return 3;
+				}
+				else if(salary<=55000){
+				    return 4;
+				}
+				else if(salary<=80000){
+				    return 5;
+				}
+				else{
+				    return 6;
+				}
+			}
+			
+            function cacMonthTax(salary){
+                var income = salary-pobject.ndeduce;/*全月应纳税所得额*/
+                
+                var level = judgelevel(income);/*纳税级别*/
+
+				var tax = pobject.trtable[level].trate*income-pobject.trtable[level].kcs;/*工资个税*/
+
+                return tax;
+            }
+
+			function RandomYearSalary(salary){
+				/*年终奖总额*/
+                var times = Math.floor(Math.random()*20)+3;/*随机生成月收入的倍数3-23*/
+                if(times>20) times=times-3;/*3-20*/
+                console.log(times);
+                var ysalary = salary*times;
+				document.write('年终奖为'+ysalary+'元，');
+				return ysalary;
+			}
+
+            function cacYearTax(salary, ysalary){
+                /*计算所得税的种类*/
+                var income;
+                if(salary>=3500){
+                    income = ysalary/12;
+                }
+                else{
+                    income = (ysalary-(3500-salary))/12;
+                }
+
+                var level = judgelevel(income);/*纳税级别*/
+
+				var tax = pobject.trtable[level].trate*income*12-pobject.trtable[level].kcs;
+                
+                return tax; 
+            }
+            
+        </script>
+
+        <div id='content'>
+			<script type='text/javascript'>
+				function bcac(){
+					var msalary = parseInt(document.getElementById('msalary').value);
+					var ysalary = parseInt(document.getElementById('ysalary').value);
+
+					var mtax = cacMonthTax(msalary);
+					var ytax = cacYearTax(msalary, ysalary);
+					var sum = mtax+ytax;
+					console.log(mtax+','+ytax);
+					document.getElementById('mtax').value = mtax;
+					document.getElementById('ytax').value = ytax;
+					document.getElementById('sum').value = sum;
+				}
+			</script>
+
+			<fieldset>
+				<legend>计算</legend>
+				<label>月工资：</label><input type='text' id='msalary'/>元<br>
+				<label>年终奖：</label><input type='text' id='ysalary'>元<br>
+				<button onclick='bcac()'>计算</button><br>
+				<label>每月所得税：</label><input id='mtax'>元<br>
+				<label>一次性所得税：</label><input id='ytax'>元<br>
+				<label>全年所得税共计：</label><input id='sum'>元<br>
+			</fieldset>
+
+			
+
+			<!-- <script>
+				// console.log(cacYearSalary(3000));
+				var salarys = [3500, 7000, 10000, 15000, 80000, 100000];
+				for(var i=0; i<salarys.length; i++){
+					var mtax = cacMonthTax(salarys[i]);
+					document.write('月工资<b>'+salarys[i]+'</b>元，每月所得税为'+mtax.toFixed(2)+'元；<br>');
+					var ytax = cacYearTax(salarys[i]);
+					document.write('一次性所得税为'+ytax.toFixed(2)+'元;<br>');
+					var total = mtax*12+ytax;
+					document.write('全年所得税共计'+total.toFixed(2)+'元。<br><br>')
+				}
+				
+			</script> -->
+        </div>
+       
+    </body>
+</html>

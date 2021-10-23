@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>走过路过不要错过</title>
+		<link type='text/css' rel='stylesheet' href='format.css'>
+		<script type='text/javascript'>
+			function appendRowByName(index){
+				var temp = document.getElementById('tt');//表
+				var neirong = document.getElementByName('tv');//填写的内容
+
+				var row = temp.insertRow(index);//在第一行加一行数据
+
+				for(var i=0; i<2; i++){
+					var content = row.insertCell(i);
+					content.innerHTML += neirong[i].value;
+				}
+
+				var tsure = row.insertCell(2);
+				tsure.innerHTML += "<button>sure</button>";
+			}
+
+			function appendRow(index){
+				var myTable=document.getElementById("myTable");
+				var row=myTable.insertRow(index);
+				var userIdCell=row.insertCell(0);
+				var userNameCell=row.insertCell(1);
+				var deleteCell=row.insertCell(2);
+				userIdCell.innerHTML=document.getElementById("name").value;
+				userNameCell.innerHTML=document.getElementById("type").value;
+				deleteCell.innerHTML="<button>sure</button>";
+			}
+		</script>
+	</head>
+	<body>
+		<table id='myTable' border='1px'>
+			<tr>
+				<th>name</th>
+				<th>type</th>
+				<th><button>sure</button></th>
+			</tr>
+			
+		</table>
+
+
+		<div id='TVedit'>
+			<!-- <div>新增影视</div> -->
+			<form>
+				<fieldset>
+					<legend>影视剧信息</legend>
+					<label>海报：</label><button>上传文件</button><br>
+					<label>影视名称：</label><input type='text' id='name' name='tv'/><br>
+					<label>影视类别：</label><input type='text' id='type' name='tv'><br>
+					<label>导演：</label><input type='text' id='guider' name='tv'/><br>
+					<label>主演：</label><input type='text' id='players' name='tv'/><br>
+					<label>剧情简介：</label><textarea rows='10' id='story' name='tv'></textarea><br>
+                    <button type='button' style='margin: 0 360px; width: 40px;' onclick='appendRowByName(1)'>sure</button>
+					<!-- 如果不把button设为type=button，他就会提交，导致只出现一瞬间就消失的结果 -->
+				</fieldset>
+				
+			</form>
+		</div>
+	</body>
+</html>

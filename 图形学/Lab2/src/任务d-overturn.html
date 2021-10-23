@@ -4,19 +4,25 @@
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
 		<title>SierPinski三角形</title>
 		<link href="../../../home.css" rel="stylesheet" type="text/css" />
+		<link type='text/css' rel='stylesheet' href='../../graphics.css'>
+
 		<script type="text/javascript" src="js/ch02/d-overturn.js"></script>
 	</head>
 	<body>
-        <h3>Sierpinski Gasket</h3><hr>
-        <div style='padding:10px'>
-            <div style='font-size:15px;'>请输入三角形的层数（0-7） 输入旋转的角度</div>
-            <label>三角形层数：</label><input id='times' type='text'><br>
-			<label>旋转的角度：</label><input id='theta' type='text'><br>
-            <button type = 'button' onclick = 'draw()' >生成图像</button>
-            <p id='out'></p>
+		<div class='needback'>
+			<h3>Sierpinski Gasket</h3><hr>
+			<div style='padding:10px'>
+				<div style='font-size:15px;'>请输入三角形的层数（0-7） 输入旋转的角度</div>
+				<label>三角形层数：</label><input id='times' type='text'><br>
+				<label>旋转的角度：</label><input id='theta' type='text'><br>
+				<button type = 'button' onclick = 'draw()' >生成图像</button>
+				<p id='out'></p>
 
-        </div>
-		<br />
-		<canvas id="gl-canvas" width="800" height="600"></canvas>
-	</body>
+			</div>
+			<br />
+			<canvas id="gl-canvas" width="800" height="600"></canvas><br>
+			<p>注：这个部分的线框三角形是使用MoveTo,LineTo,stroke等直接绘制完成，并没有使用之前的引入包。</p>
+
+		</div>
+        	</body>
 </html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>走过路过不要错过</title>
+		<link type='text/css' rel='stylesheet' href='format.css'>
+		<link type='text/css' rel='stylesheet' href='../back.css'>
+		<style>
+			#op{
+				margin: 0 270px;
+				width: 200px;
+			}
+		</style>
+		<script type='text/javascript'>
+			//删除行
+			function deleteRow(deleteButton){
+				var currentIndex = deleteButton.parentNode.parentNode.rowIndex;
+				var TVtable = document.getElementById('TVlist');
+				TVtable.deleteRow(currentIndex);
+			}
+			//在Index位置添加行，默认添加在首个数据行
+			function appendRow(index){
+				// console.log(1);
+				var tvtable = document.getElementById('TVlist');
+				//添加的位置索引
+				var row = tvtable.insertRow(index);
+
+				var tvpicture = row.insertCell(0);//必须从0开始，不然会没法显示
+				var tvname = row.insertCell(1);
+				var tvtype = row.insertCell(2);
+				var tvguider = row.insertCell(3);
+				var tvplayers = row.insertCell(4);
+				var tvstory = row.insertCell(5);
+				var editcell = row.insertCell(6);
+				var deletecell = row.insertCell(7);
+
+				tvpicture.innerHTML=document.getElementById('picture').value;
+				tvname.innerHTML=document.getElementById('name').value;
+				tvtype.innerHTML=document.getElementById('type').value;
+				tvguider.innerHTML=document.getElementById('guider').value;
+				tvplayers.innerHTML=document.getElementById('players').value;
+				tvstory.innerHTML=document.getElementById('story').value;
+				editcell.innerHTML = "<td><button value='TVedit' onclick='edit(this)'><a href='#TVedit'>编辑</a></button></td>";
+				deletecell.innerHTML = "<button value='TVdelete' onclick='deleteRow(this)'>删除</button>";
+
+				alert('信息已经提交到表单里');
+			}
+			//编辑
+			function edit(editButton){
+				var table = document.getElementById('TVlist');
+				var index = editButton.parentNode.parentNode.rowIndex;
+
+				var info = document.getElementsByName('tv');//表单标签栏，被填写部分
+
+				var elements = ['picture', 'name', 'type', 'guider', 'players', 'story'];
+				
+				var i;
+				for(i=0; i<info.length-1; i++){
+					console.log(table.rows[index].cells[i].innerHTML);
+					info[i].value = table.rows[index].cells[i].innerHTML;
+					
+				}
+				console.log(table.rows[index].cells[i].innerHTML);
+				info[i].innerHTML = table.rows[index].cells[i].innerHTML;
+
+				deleteRow(editButton);
+			}
+
+			function nullcheck(editbutton){
+				var info = document.getElementsByName('tv');
+				
+				for(var i=0; i<info.length; i++){
+					if(info[i].value == null || info[i].value == undefined || info[i].value == ''){
+						console.log(info[i].value);
+						alert('表单没有填写完整啊！');
+						return false;
+					}
+				}
+
+				return true;
+			}
+		</script>
+	</head>
+	<body>
+		<div id='TVtable'>
+			<table id='TVlist' border=1px>
+				<caption>
+					<b>影视记录列表</b>
+					<button id='addition'><a href='#TVedit'>增加</a></button>
+				</caption>
+				<tr>
+					<th colspan='6'>影视信息</th>
+					<th colspan='2'>操作</th>
+				</tr>
+				<tr>
+					<th>海报</th>
+					<th>影视名称</th>
+					<th>影视类别</th>
+					<th>导演</th>
+					<th>主演</th>
+					<th>剧情简介</th>
+					
+					<th>编辑</th>
+					<th>删除</th>
+				</tr>
+				<tr>
+					<td><img src='img/云南虫谷.jpg'></td>
+					<td>云南虫谷</td>
+					<td>悬疑、冒险</td>
+					<td>费振翔</td>
+					<td>潘粤明、张雨绮、姜超</td>
+					<td>胡八一、Shirley杨、王胖子组成的探险三人组去往传闻中救人性命的雮尘珠成为了古滇国献王墓的随葬品，深入瘴疠之地探寻雮尘珠踪迹。</td>
+					
+					<td><button value='TVedit' onclick='edit(this)'><a href='#TVedit'>编辑</a></button></td>
+					<td><button value='TVdelete' onclick='deleteRow(this)'>删除</button></td>
+				</tr>
+				<tr>
+					<td><img src='img/龙岭迷窟.jpg' ></td>
+					<td>龙岭迷窟</td>
+					<td>悬疑、冒险</td>
+					<td>费振翔</td>
+					<td>潘粤明、张雨绮、姜超</td>
+					<td>胡八一、王胖子和大金牙前往陕西古蓝县，无意掉入“龙岭迷窟”，遇到同样来找红斑根源的shirley杨，几人决心寻找雮尘珠。</td>
+					
+					<td><button value='TVedit' onclick='edit(this)'><a href='#TVedit'>编辑</a></button></td>
+					<td><button value='TVdelete' onclick='deleteRow(this)'>删除</button></td>
+				</tr>
+				<tr>
+					<td><img src='img/怒晴湘西.png' ></td>
+					<td>怒晴湘西</td>
+					<td>探险、悬疑</td>
+					<td>费振翔</td>
+					<td>潘粤明、高伟光、辛芷蕾</td>
+					<td>民国年间，卸岭魁首陈玉楼，联手军阀罗老歪，入湘西瓶山探秘元墓。途遇搬山道人鹧鸪哨（高伟光饰），搬山历来不为财物，只为寻找解除族人诅咒的雮尘珠。</td>
+					
+					<td><button value='TVedit' onclick='edit(this)'><a href='#TVedit'>编辑</a></button></td>					
+					<td><button value='TVdelete' onclick='deleteRow(this)'>删除</button></td>
+				</tr>
+			</table>
+		</div>
+
+		<div id='TVedit'>
+			<form>
+				<fieldset>
+						<legend>影视剧信息</legend>
+						<label>海报地址：</label><input type='text' id='picture' name='tv'/><br>
+						<label>影视名称：</label><input type='text' id='name' name='tv'/><br>
+						<label>影视类别：</label><input type='text' id='type' name='tv'><br>
+						<label>导演：</label><input type='text' id='guider' name='tv'/><br>
+						<label>主演：</label><input type='text' id='players' name='tv'/><br>
+						<label>剧情简介：</label><textarea rows='10' id='story' name='tv'>brief...</textarea><br>
+						<div id='op'>
+							<button type='button' onclick='if(nullcheck()) appendRow(2);'>确认提交</button>
+							<button type='button'><a href='#TVtable'>回到表单</a></button>
+						</div>
+						<p id='brief'><b>注：</b><br>
+							1.如果需要编辑一个影视，那么默认先删除，修改成功后会添加在首行。<br>
+							2.海报地址输入格式如：<\img src='img/云南虫谷.jpg'>，其中第一个'\'为转义符。<br>
+						</p>
+				</fieldset>
+			</form>
+		</div>
+	
+		<p>存在着添加、回到表单的按钮跳转问题，建议在原网页上进行操作。<a href='index.html' target='_blank'>查看原网页</a></p>
+	</body>
+</html>

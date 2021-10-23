@@ -1,0 +1,41 @@
+html {
+	margin: 0 40px;
+}
+body{
+    /* background: #8FAADC; /* fallback for old browsers */
+    /* width: 1000px; */
+    margin: 0 auto;
+	
+	font-family: ‘Courier New’, Courier, monospace;
+}
+
+#guide {
+    width: 250px;
+	height: 700px;
+    float: left;
+    background-color: lightyellow;
+	opacity: 0.9;
+	position: absolute;
+	top: 89px;
+}
+#frame{
+	margin: 0 270px;
+	
+}
+iframe{
+	width: 75%;
+	width: 900px;
+	border: none;
+	background-color: lightyellow;
+	opacity: 0.9;
+	height: 1400px;
+}
+
+p.ggg {
+	margin: 0 auto;
+    padding: 10px;
+}
+p.ggg a{
+    color:black;
+    text-decoration: none;
+}

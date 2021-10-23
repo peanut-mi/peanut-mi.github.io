@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Json存储柜</title>
+	</head>
+	<body>
+		<script>
+			var expressCabinet = {
+				position: "黄嘉欣的大别墅的门外",
+				boxNumber:5,
+				boxs:[
+					{
+						boxId: 'box1',
+						isEmpty: true,
+						code: '12345'
+					},
+					{
+						boxId: 'box2',
+						isEmpty: true,
+						code: '25643'
+					},
+					{
+						boxId: 'box3',
+						isEmpty: true,
+						code: '98789'
+					},
+					{
+						boxId: 'box4',
+						isEmpty: false,
+						code: '35467'
+					},
+					{
+						boxId: 'box5',
+						isEmpty: false,
+						code: '87658'
+					}
+				],
+				codes:[//key-value
+					{'12345': "box1"},
+					{'25643': "box2"},
+					{'98789': "box3"},
+					{'34567': "box4"},
+					{'87658': "box5"}
+				],
+				emptyBoxs:[
+					"box1", "box2", "box3", "box5"
+				],
+
+				takeAway: function(code){
+					var boxid;
+					var havebox = false;
+					for(var i = 0; i < this.boxNumber; i++){
+						var boxcodes = this.codes[i];
+						//console.log(boxcodes);
+						if(boxcodes[code] != undefined){
+							boxid = boxcodes[code];
+							console.log(boxid);
+							this.boxs[i].isEmpty = true;
+							havebox = true;
+							break;
+						}
+						
+					}
+					if(havebox) document.write('成功取走'+boxid+'的东西啦<br>');
+					else document.write('没有这个箱子，密码错误！')
+					document.write("************<br>");
+				},
+
+				deposit: function(){
+					var havempty = false;
+					
+					for(var i=0; i<this.boxNumber;i++){
+						var box = this.boxs[i];
+						console.log(box.isEmpty);
+						if(box.isEmpty){
+							document.write('东西可存在箱子box'+(i+1)+'里<br>密码为'+box.code+"<br>");
+							box.isEmpty = false;
+							console.log(box.isEmpty);
+							havempty = true;
+							break;
+						}
+					}
+					if(!havempty) ducument.write("没有空箱子啦<br>");
+					document.write("************<br>");
+				},
+				
+				BoxInfo: function(){
+					document.write('****所有箱子的储存情况***<br>');
+					for(var i=0; i < this.boxNumber; i++){
+						var box = this.boxs[i];
+						document.write('boxid: '+box.boxId+'<br>');
+						document.write('isEmpty: '+box.isEmpty+'<br>');
+					}
+					document.write('************************<br>');
+				}
+				
+			};
+			
+			expressCabinet.BoxInfo();
+			
+			expressCabinet.deposit();
+			expressCabinet.takeAway(87658);
+			
+			expressCabinet.BoxInfo();
+			
+			
+		</script>
+		
+	</body>
+</html>

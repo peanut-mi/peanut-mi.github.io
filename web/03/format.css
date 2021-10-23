@@ -1,0 +1,66 @@
+table{
+	margin: 15px;
+}
+button{
+	/*外观*/
+	border: none;
+	padding: 4px;
+	margin: 10px;
+	background-color: #8FAB65;
+	color: white;
+}
+button a{
+	text-decoration: none;
+	color: white;
+}
+#addition{
+	/*靠右*/
+	position: asolate;
+	float: right;
+}
+#addition:hover {
+	background-color: #37464D;
+	color: white;
+}
+td{
+	padding: 10px;
+	text-align: center;
+}
+td img{
+	height:150px; width:250px;
+}
+#brief{
+	font-size: 8px;
+	padding: 0 20px;
+}
+
+#TVedit{
+	width: 700px;
+	position: absoluted;
+	margin: 40px 42px;
+}
+
+#TVedit form{
+	vertical-align: top;
+}
+
+label{
+	display: inline-block;
+	float: left;
+	width: 200px;
+	/* height:40px; */
+	text-align:right;
+	margin: 10px;
+}
+input {
+	width: 300px;
+	margin: 10px;
+	background-color:#E6E6E6;
+	
+}
+textarea{
+	width: 300px;
+	margin: 10px;
+	background-color: #E6E6E6;
+	border: 2px solid black;
+}

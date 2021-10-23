@@ -3,6 +3,8 @@
     <head>
         <meta http-equiv = 'Content-Type' content='text/html; charset=utf-8'>
         <link type='text/css' rel='stylesheet' href='../../home.css'>
+        <link type='text/css' rel='stylesheet' href='../graphics.css'>
+
         <title>Lab3</title>
         <style>
             body{
@@ -97,27 +99,30 @@
 
     </head>
     <body>
-        <h2>Lab3</h2><hr>
-        <div>
-            <h3>任务b：自己的那辐图</h3>
-            <button id='show' onclick='init()'>装饰树</button>
-            <input type='checkbox' name='decoration' id='top' checked='checked'>顶部装饰
-            <input type='checkbox' name='decoration' id='in' checked='checked'>里部装饰<br>
+        <div class='needback'>
+            <h3>Lab3 旋转的多边形</h3><hr>
+            <div>
+                <h3>任务b：自己的那辐图</h3>
+                <button id='show' onclick='init()'>装饰树</button>
+                <input type='checkbox' name='decoration' id='top' checked='checked'>顶部装饰
+                <input type='checkbox' name='decoration' id='in' checked='checked'>里部装饰<br>
+                
+                <canvas id='chirstmas-tree' height='300' width='300'></canvas>
+                <p><b>注：</b>在绘制这幅图之前不能绘制下面的，否则会发生错误。</p>
+                </script>
+            </div>
+            <div>
+                <h3>任务a：旋转的多边形</h3>
+                <button id='rot' onclick='initRotSquare()'>查看图像</button><br>
+                <button id='convert' onclick='convert()'>改变转动方向</button><br>
+                <button id='changes' onclick='changeSpeed()'>调整转动速度</button>
+                <input id='quick' name='change' type='radio' value='1' >太慢了，加快速度
+                <input id='quick' name='change' type='radio' value='0' checked='checked'>刚刚好，保持不变
+                <input id='slow' name='change' type='radio' value='-1' >太快了，减慢速度<br>
+                <canvas id='rot-canvas' height='512' width='512'></canvas>    
+            </div>
+        </div>
             
-            <canvas id='chirstmas-tree' height='300' width='300'></canvas>
-
-            </script>
-        </div>
-        <div>
-            <h3>任务a：旋转的多边形</h3>
-            <button id='rot' onclick='initRotSquare()'>查看图像</button><br>
-            <button id='convert' onclick='convert()'>改变转动方向</button><br>
-            <button id='changes' onclick='changeSpeed()'>调整转动速度</button>
-            <input id='quick' name='change' type='radio' value='1' >太慢了，加快速度
-            <input id='quick' name='change' type='radio' value='0' checked='checked'>刚刚好，保持不变
-            <input id='slow' name='change' type='radio' value='-1' >太快了，减慢速度<br>
-            <canvas id='rot-canvas' height='512' width='512'></canvas>    
-        </div>
         
         
         

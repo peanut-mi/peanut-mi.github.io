@@ -6,6 +6,7 @@ var canvas;
 var gl;
 
 var points = [];
+var colors = [];
 var numTimesToSubdivide;
 
 function initTriangles2d(){
@@ -23,9 +24,9 @@ function initTriangles2d(){
 
 	// first, initialise the corners of the gasket with three points.
 	var vertices = [
-		-1, -1,  0,
-		 0,  1,  0,
-		 1, -1,  0
+		-0.5, -0.5,  0,
+		 0,  0.5,  0,
+		 0.5, -0.5,  0
 	];
 
 	// var u = vec3.create();
@@ -38,7 +39,19 @@ function initTriangles2d(){
 	// vec3.set( w, 1, -1, 0 );
 	var w = vec3.fromValues( vertices[6], vertices[7], vertices[8] );
 	
+	var angle = document.getElementById('angle').value;
 
+	var rot = document.getElementsByName('rot');
+	if(rot[0].checked){
+		console.log(angle);
+		u=rorateTriangle(u, angle);
+		v=rorateTriangle(v, angle);
+		w=rorateTriangle(w, angle);
+	}
+	else if(rot[1].checked){
+		rorate(angle);
+	}
+	
 	divideTriangle( u, v, w, numTimesToSubdivide );
 	
 	// configure webgl
@@ -73,6 +86,31 @@ function initTriangles2d(){
 		}
 	}
 };
+
+// function rorate(angle){
+// 	for(var i=0; i<points.length; i+=2){
+// 		for(var i=0; i<points.length; i+=2){
+// 			var angle2 = getAngle(points[i], points[i+1], angle);
+// 			var tmp = rorateTriangle(vec3.fromValues(points[i], points[i+1], 0), angle2);
+// 			points[i] = tmp[0];
+// 			points[i+1] = tmp[1];
+// 		}
+// 	}
+// }
+// function getAngle(a, b, angle){
+// 	var length=Math.sqrt(a*a+b*b);
+// 	var angle2 = angle*length/1;
+// 	return angle2;
+// }
+
+function rorateTriangle(dot, angle){
+	var theta = angle*Math.PI/180;
+	var a=dot[0];
+	var b=dot[1];
+	var c=a*Math.cos(theta)+b*Math.sin(theta);
+	var d=b*Math.cos(theta)-a*Math.sin(theta);
+	return vec3.fromValues(c, d, 0);
+}
 
 function triangle( a, b, c ){
 	//var k;

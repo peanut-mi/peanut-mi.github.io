@@ -1,12 +1,11 @@
-html{
-	background: url(img/flo.jpg);
-}
 body {
-	background:lightyellow;
+	background: url(img/flo.jpg);
+	
 	margin: 0 auto;
-	width: 70%;
+	width: 75%;
 	opacity: 0.95;
 	font-family: ‘Courier New’, Courier, monospace;
+	padding:10px;
 }
 
 /*welcome*/
@@ -19,25 +18,23 @@ div.welcome {
 	background-color: lightyellow;
 	opacity: 0.95;
 
+	/* padding: auto 100px; */
 	position: fixed;
 	top: 80px;
 
-	font-family: ‘Courier New’, Courier, monospace;
 }
 
 .content{
 	text-align: left;
-	width: 60%;
+	width: 70%;
 }
 .content a{
 	color: black;;
 }
-.content:hover{
-	background-color: #CBC79D;
+.content ul li:hover{
+	background-color: #8FAB65;
 	color: black;
-}
-.content a:hover{
-	color: black;
+	margin: 10px;
 }
 
 

@@ -8,7 +8,7 @@ var canvas;
 var points = [];
 var colors = [];
 
-var numTimesToSubdivide;
+var numTimesToSubdivide=1;
 
 function getTimes(){
 	var content = document.getElementById('times').value;
@@ -73,7 +73,7 @@ function initTriangles3d() {
     gl.bindBuffer(gl.ARRAY_BUFFER, vBuffer);
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(points), gl.STATIC_DRAW);
 
-    var vPosition = gl.getAttribLocation(program, "vPosition");
+    var vPosition = gl.getAttribLocation(program, "vPosition2");
     gl.vertexAttribPointer(vPosition, 3, gl.FLOAT, false, 0, 0);
     gl.enableVertexAttribArray(vPosition);
 

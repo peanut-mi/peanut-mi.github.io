@@ -1,8 +1,4 @@
 /*Lab*/
-html{
-	background-color: lightyellow;
-	opacity: 0.95;
-}
 
 ul.Lab li a{
 	display:block;
@@ -12,7 +8,7 @@ ul.Lab li a{
 	border: 3px solid #ccc;
 	font-size: 20px;
 	background-color: lightyellow;
-	opacity: 0.95;;
+	opacity: 0.9;
 }
 ul.Lab li {
 	float: left;
@@ -20,4 +16,10 @@ ul.Lab li {
 ul.Lab li a:hover {
 	border: 3px solid black;
 	background-color:#8FAB65;
+}
+
+.needback{
+	padding: 20px;
+	background-color: lightyellow;
+	opacity: 0.9;
 }
