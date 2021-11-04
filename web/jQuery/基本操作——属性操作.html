@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <title>jQuery基本操作——属性操作</title>
+        <script type='text/javascript' src='js/jquery-1.x.js'></script>       
+    </head>
+    <body>
+        <img id='flower1' src='img/flower1.png' height='200px'>
+        <img id='flower2' src='img/flower2.png' height='200px'>
+        <input type='button' value='交换' onclick='changeFlower()'><hr>
+
+        <input type='checkbox' name='goodsType' value='玫瑰' checked>玫瑰
+        <input type='checkbox' name='goosdType' value='百合' >百合
+        <input type='checkbox' name='goodsType' value='康乃馨'>康乃馨
+        <input type='checkbox' name='goodsType' value='马蹄莲'>马蹄莲<br>
+
+        <input type='button' value='全选' onclick='changeSelect()'>
+        <input type='button' value='反选' onclick='reverseSelect()'>
+        <input type='button' value='全选并禁用' onclick='disabledSelect()'>
+        <input type='button' value='取消禁用' onclick='enabledSelect()'>
+
+        <script type='text/javascript'>
+            function changeFlower(){
+                var source = $("#flower1").attr("src");
+                $("#flower1").attr("src", function(){return $("#flower2").attr("src")});
+                $("#flower2").attr("src", source);
+            }
+
+            function changeSelect(){
+                $("input[type='checkbox']").prop("checked", true);
+            }
+            function reverseSelect(){
+                $("input[type='checkbox']").prop("checked", 
+                    function(index, oldValue){return !oldValue;});
+            }
+            function disabledSelect(){
+                $("input[type='checkbox']").prop({disabled: true, checked: true});
+            }
+            function enabledSelect(){
+                $("input[type='checkbox']").removeProp("disabled");
+            }
+        </script>
+    </body>
+</html>

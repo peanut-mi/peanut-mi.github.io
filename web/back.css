@@ -18,17 +18,13 @@ body{
 	position: absolute;
 	top: 89px;
 }
-#frame{
-	margin: 0 270px;
-	
-}
 iframe{
+	margin: 0 270px;
 	width: 75%;
-	width: 900px;
 	border: none;
 	background-color: lightyellow;
 	opacity: 0.9;
-	height: 1400px;
+	height: 700px;
 }
 
 p.ggg {

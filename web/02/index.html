@@ -5,7 +5,14 @@
         <meta charset='UTF-8'>
 		<link href='cac.css' type='text/css' rel='stylesheet'>
 		<link type='text/css' rel='stylesheet' href='../back.css'>
-
+		<style>
+			button{
+				/*外观*/
+				border: none;
+				background-color: #8FAB65;
+				color: white;
+			}
+		</style>
     </head>
     <body>
         <h2>2021-9-29 计算个人所得税</h2>
@@ -117,16 +124,41 @@
 
 					var mtax = cacMonthTax(msalary);
 					var ytax = cacYearTax(msalary, ysalary);
-					var sum = mtax+ytax;
+					var sum = mtax*12+ytax;
 					console.log(mtax+','+ytax);
-					document.getElementById('mtax').value = mtax;
-					document.getElementById('ytax').value = ytax;
-					document.getElementById('sum').value = sum;
+					document.getElementById('mtax').value = mtax.toFixed(2);
+					document.getElementById('ytax').value = ytax.toFixed(2);
+					document.getElementById('sum').value = sum.toFixed(2);
 				}
 			</script>
 
+			<script>
+				var salarys = [3500, 7000, 10000, 15000, 80000, 100000];
+				
+				for(var i=0; i<salarys.length; i++){
+					var mtax = cacMonthTax(salarys[i]);
+					document.write('月工资<b>'+salarys[i]+'</b>元，每月所得税为'+mtax.toFixed(2)+'元；<br>');
+
+					var times = Math.floor(Math.random()*20);
+					if(times<3) times+=3;
+					console.log(times);
+
+					var ysalary = salarys[i]*times;
+					var ytax = cacYearTax(salarys[i], ysalary);
+					document.write('年终奖为'+ysalary+'，一次性所得税为'+ytax.toFixed(2)+'元;<br>');
+					var total = mtax*12+ytax;
+					document.write('全年所得税共计'+total.toFixed(2)+'元。<br><br>')
+				}
+				
+			</script>
+
+			
+			<div>
+				<p style='font-size: 10px;'><b>注：</b>年终奖随机生成，为月工资的3~20倍。</p>
+			</div><hr>
+
 			<fieldset>
-				<legend>计算</legend>
+				<legend>自定义计算</legend>
 				<label>月工资：</label><input type='text' id='msalary'/>元<br>
 				<label>年终奖：</label><input type='text' id='ysalary'>元<br>
 				<button onclick='bcac()'>计算</button><br>
@@ -134,23 +166,8 @@
 				<label>一次性所得税：</label><input id='ytax'>元<br>
 				<label>全年所得税共计：</label><input id='sum'>元<br>
 			</fieldset>
-
-			
-
-			<!-- <script>
-				// console.log(cacYearSalary(3000));
-				var salarys = [3500, 7000, 10000, 15000, 80000, 100000];
-				for(var i=0; i<salarys.length; i++){
-					var mtax = cacMonthTax(salarys[i]);
-					document.write('月工资<b>'+salarys[i]+'</b>元，每月所得税为'+mtax.toFixed(2)+'元；<br>');
-					var ytax = cacYearTax(salarys[i]);
-					document.write('一次性所得税为'+ytax.toFixed(2)+'元;<br>');
-					var total = mtax*12+ytax;
-					document.write('全年所得税共计'+total.toFixed(2)+'元。<br><br>')
-				}
-				
-			</script> -->
         </div>
        
+		
     </body>
 </html>

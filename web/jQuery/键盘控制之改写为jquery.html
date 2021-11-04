@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>按键事件处理</title>
+    <style type="text/css">
+		body{
+			margin:0px;
+			padding:0px;
+			overflow:hidden;
+		}
+		#mainDiv{
+			position:relative;
+		}
+		img{
+			width:100px;
+			height:230px;
+		}
+	</style>
+    <script type='text/javascript' src='js/jquery-1.x.js'></script>
+  </head>
+  <body>
+    <div id="mainDiv" style="width:100px;height:230px;">
+    	<img id="coffeeGirl" src="img/coffeeGirl/d0.png" />
+    </div>
+    <script type="text/javascript">
+		var downImages=["d0.png","d1.png","d2.png"];
+		var upImages=["u0.png","u1.png","u2.png"];
+		var rightImages=["r0.png","r1.png","r2.png"];
+		var leftImages=["l0.png","l1.png","l2.png"];
+
+		// var mainDiv=document.getElementById("mainDiv");
+		// var coffeeGirl=document.getElementById("coffeeGirl");
+		// var imageWidth=mainDiv.offsetWidth;
+		// var imageHeight=mainDiv.offsetHeight;
+		
+        var mainDiv = $("#mainDiv");
+        var coffeeGirl = $("#coffeeGirl");
+        var imageWidth = mainDiv.width();//100
+        var imageHeight = mainDiv.height();
+
+        var images=downImages;
+
+		var n=0;//图片计数
+		//判断按键方向
+		function doKeyDown(e){
+			// var x=dealPx(mainDiv.style.left);
+			// console.log(mainDiv.style.left);
+			// console.log(x);
+			// var y=dealPx(mainDiv.style.top);  
+
+            // var x = mainDiv.offset().left;
+			// var y = mainDiv.offset().top;
+			//没有px,不可直接改变大小
+
+			var x = dealPx(mainDiv.css("left"));
+			var y = dealPx(mainDiv.css("top"));
+
+			//IE的事件采用window.event;
+			e=e||window.event;
+			var keyID=e.keyCode?e.keyCode:e.which;
+			if(keyID==38 || keyID==87){ // up arrow and W  
+				console.log("up"); 
+				if(y-10>=0){
+					y=y-10;
+				}
+				images=upImages;
+			}  
+			if(keyID==40 || keyID==83){ // down arrow and S 
+				console.log("down"); 
+			   if(y+imageHeight<window.innerHeight){
+				 y=y+10;
+			   }
+			   images=downImages;
+			}
+			if(keyID==39 || keyID==68){ // right arrow and D  
+				console.log("right");
+				if(x+imageWidth<window.innerWidth){			
+				   x=x+10;
+				}
+				images=rightImages; 
+			} 		 
+			if(keyID==37 || keyID==65){ // left arrow and A  
+				console.log("left"); 
+			   if(x-10>=0){
+					x =x-10; 
+			   }
+			   images=leftImages;
+			} 
+			working(x,y); 
+		}
+
+		function working(x,y){		
+			if(n>=rightImages.length){
+				n=0;
+			}
+
+			// coffeeGirl.src="img/coffeeGirl/"+images[n];
+			coffeeGirl.attr("src", "img/coffeeGirl/"+images[n]);
+
+			// mainDiv.style.left=x+"px";
+			// mainDiv.style.top=y+"px";
+			// mainDiv.offset().left = x;
+			// mainDiv.offset().top = y;
+
+			// mainDiv.attr("style", "left:"+x+"px");
+			mainDiv.css("left", x+"px");
+
+			// mainDiv.attr("style", "top:"+y+"px");
+			mainDiv.css("top", y+"px");
+
+			n++;	
+		}
+		//去掉字符串后边的px
+		function dealPx(pixelStr){
+			var pixel= pixelStr.substring(0,pixelStr.indexOf('px'));
+			if(pixel==""){
+				return 0;
+			}else{
+				return parseInt(pixel);	
+			}
+		}
+		window.onkeydown=doKeyDown;
+	</script>   
+   </body>
+</html>
