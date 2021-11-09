@@ -1,5 +1,6 @@
 table{
 	margin: 15px;
+	border-collapse: collapse;
 }
 button{
 	/*外观*/
@@ -35,7 +36,7 @@ td img{
 }
 
 #TVedit{
-	width: 700px;
+	width: 60%;
 	position: absoluted;
 	margin: 40px 42px;
 }
@@ -63,4 +64,8 @@ textarea{
 	margin: 10px;
 	background-color: #E6E6E6;
 	border: 2px solid black;
+}
+#op{
+	margin: 0 270px;
+	width: 200px;
 }

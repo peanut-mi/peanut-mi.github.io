@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            #show {
+                display: none;
+
+                /* position: absolute; */
+            }
+        </style>
+        <script type='text/javascript'>
+            function out(){
+                var hi = document.getElementById("demo").style;
+                if(hi.display == 'none'){
+                    console.log("yes");
+                    hi.display = 'block';
+                }
+            }
+            function showdiv(show){
+                document.getElementById(show).style.display = 'block';
+                
+            }
+            function closediv(show){
+                document.getElementById(show).style.display = 'none';
+            }
+        </script>
+    </head>
+    <body>
+        
+        <input type='button' onclick='showdiv("show")' value='出现吧'/>
+        <input type='button' onclick='closediv("show")' value='隐藏吧'/>
+        <div id='show'>hello!</div>
+    </body>
+</html>
