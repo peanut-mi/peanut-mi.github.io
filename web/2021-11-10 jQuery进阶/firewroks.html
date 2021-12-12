@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>放烟花</title>
+		<script type='text/javascript' src='../jQuery/jquery-1.x.js'></script>
+        <style>
+            body{
+                padding: 0;
+                margin: 0;
+            }
+            #d{
+                background-color: red;
+                width:30px;
+                height: 50px;
+                position: fixed;
+                top:450px;
+                left: 235px;
+            }
+            p{
+                position: fixed;
+                left: 250px;
+                top:450px;
+            }
+        </style>
+	</head>
+	<body>
+		<div id="background" style="background-color: black;">;
+            <p style="color: red" id="1">o</p>
+            <p style="color: lightgreen" id="2">o</p>
+            <p style="color: blue" id="3">o</p>
+            <p style="color: lightblue" id="4">o</p>
+            <p style="color: lightpink" id="5">o</p>
+            <!-- <p style="color: red" id="6">o</p>
+            <p style="color: lightgreen" id="7">o</p>
+            <p style="color: blue" id="8">o</p>
+            <p style="color: lightblue" id="9">o</p>
+            <p style="color: lightpink" id="10">o</p> -->
+            <div id="d"></div>
+        </div>
+        <input type="button" id="action" value="放烟花">
+		
+		<script type="text/javascript">
+			$(function(e){
+                $("#background").css("width","500px");
+                $("#background").css("height","500px");
+
+                $("#action").click(function(){
+                    $("#1").animate({
+					    top:'-=500px',
+                        left:'+=220px'
+				    }, 2000);
+                    $("#2").animate({
+					    top:'-=500px',
+                        left:'+=150px'
+				    }, 2000);
+                    $("#3").animate({
+					    top:'-=500px'
+				    }, 2000);
+                    $("#4").animate({
+					    top:'-=500px',
+                        left:'-=220px'
+				    }, 2000);
+                    $("#5").animate({
+					    top:'-=500px',
+                        left:'-=150px'
+				    }, 2000);
+                });
+            })
+		</script>
+	</body>
+</html>

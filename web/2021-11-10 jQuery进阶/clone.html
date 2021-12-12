@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>元素及事件的复制</title>
+		<script type='text/javascript' src='../jQuery/jquery-1.x.js'></script>
+	</head>
+	<body>
+		<div id="containerDiv">
+			<div id="shirtDiv">
+				<img src="img/qx.jpg" width="150px" title="易烊千玺" /><br>
+				<span>四字弟弟</span>
+			</div>
+			<div>
+				<input type="button" value="普通复制" id="normalClone"><br>
+				<input type="button" value="复制元素及事件" id="normalEventClone"><br>
+				<input type="button" value="复制元素及子元素" id="deepClone"><br>
+				<input type="button" value="复制子元素及事件" id="deepEventClone"><br>
+				<input type="button" value="清空" id="clear"><br>
+			</div>
+		</div><hr>
+		
+		<p id="data"></p>
+		<div id="Clone"></div>
+		
+		<script type="text/javascript">
+			$(function(e){
+				$("#shirtDiv span").data("msg", "千千");
+				$("#shirtDiv").click(function(){
+					alert($(this).find("span").data("msg"));
+				});
+
+				$("#shirtDiv img").click(function(){
+					alert($(this).attr("title"));
+				});
+
+				$("#normalClone").click(function(){
+					$("#Clone").append($("#shirtDiv").clone(false));
+				});
+				$("#normalEventClone").click(function(){
+					$("#Clone").append($("#shirtDiv").clone(true));
+				});
+				$("#deepClone").click(function(){
+					$("#Clone").append($("#shirtDiv").clone(true, false));
+					console.log("因为没有赋值子元素的事件，所以弹框为undefined");
+				});
+				$("#deepEventClone").click(function(){
+					$("#Clone").append($("#shirtDiv").clone(true, true));
+				});
+
+				$("#clear").click(function(){
+					$("#Clone").empty();
+				});
+			});
+		</script>
+	</body>
+</html>

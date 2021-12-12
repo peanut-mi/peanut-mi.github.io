@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>显示与隐藏</title>
+        <script type="text/javascript" src="../jQuery/jquery-1.x.js"></script>
+    </head>
+    <body>
+        <input type="button" id="show" value="显示" />
+        <input type="button" id="hide" value="隐藏" />
+        <input type="button" id="show-slow" value="显示（slow）" />
+        <input type="button" id="hide-slow" value="隐藏（slow）" />
+        <input type="button" id="show-callback" value="显示（callback）" />
+        <input type="button" id="hide-callback" value="隐藏（callback）" />
+
+
+        <div id="showDiv" style="padding: 10px">
+            <img src="img/爬爬宠.gif"/>
+        </div>
+        
+        <script type="text/javascript">
+            $(function(e){
+                $("#show").click(function(){
+                    $("#showDiv").show();
+                });
+                $("#hide").click(function(){
+                    $("#showDiv").hide();
+                });
+
+                $("#show-slow").click(function(){
+                    $("#showDiv").show("slow");
+                });
+                $("#hide-slow").click(function(){
+                    $("#showDiv").hide("slow");
+                });
+
+                $("#show-callback").click(function(){
+                    $("#showDiv").show("slow", function(){
+                        $(this).css("background-color", "#eee");
+                    });
+                    $("#showDiv").css("background-color", "grey");
+                });
+                $("#hide-callback").click(function(){
+                    $("#showDiv").hide("slow", function(){
+                        alert("元素被隐藏");
+                    });
+                });
+
+            })
+        </script>
+    </body>
+</html>

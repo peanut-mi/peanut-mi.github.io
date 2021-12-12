@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <title>animation</title>
+        <script type="text/javascript" src="../jQuery/jquery-1.x.js"></script>
+        <style>
+            #move{
+                position: absolute; /*声明后才可以改变位置*/
+                width: 200px;
+                height: 200px;
+                background-color: bisque;
+            }
+            img{
+                width: 200px;
+                height: 200px;
+            }
+        </style>
+    </head>
+    <body>
+        <input type="button" value="向右漂移" id="toRightBtn" />
+        <input type="button" id="toDownBtn" value="向下漂移" />
+        <input type="button" id="toHideBtn" value="隐藏" />
+        <input type="button" id="SeriesBtn" value="系列动画" /><br>
+
+        <div id="move" style="padding: 10px">
+            <img src="img/爬爬宠.gif"/>
+        </div>
+        
+        <script type="text/javascript">
+            $(function(e){
+                $("#toRightBtn").click(function(){
+                    $("#move").animate({
+                        left: '250px'},
+                        1000/*毫秒*/
+                    );
+                });
+
+                $("#toDownBtn").click(function(){
+                    $("#move").animate({
+                        top:'+=250px',
+                    }, 1000);
+                });
+
+                $("#toHideBtn").click(function(){
+                    $("#move").animate({
+                        height:"toggle",
+                        opacity:"toggle",
+                    });
+                });/*不能加时间fast, slow, 1000*/
+
+                $("#SeriesBtn").click(function(){
+                    $("#move").animate({
+                        height:'+=50px',
+                        width:'+=50px',
+                    });/*不能加时间fast, slow, 1000*/
+                    $("#move img").animate({
+                        height:'+=50px',
+                        width:'+=50px',
+                    });
+                });
+                
+            });
+        </script>
+    </body>
+</html>
