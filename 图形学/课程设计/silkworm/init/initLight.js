@@ -1,5 +1,5 @@
 var spotLight;
-var angleNUM;
+
 
 function initSpotLight(){
     // 不加光源整个场景就会漆黑一片
@@ -17,25 +17,6 @@ function initSpotLight(){
     spotLight.shadow.mapSize.height = 2048;
     scene.add(spotLight);
 
-    
-    angleNUM=3;
-    // document.onkeydown = function(event){
-    //     switch(event.keyCode){
-    //         case 85: //up
-    //             angleNUM+=1;
-    //             break;
-    //         case 68: //down
-    //             angleNUM-=1;
-    //             if(angleNUM<1) angleNUM=1;
-    //             break;
-    //         case 37: //left
-    //             spotLight.position.z+=0.2;
-    //             break;
-    //         case 39: //right
-    //             spotLight.position.z-=0.2;
-    //             break;
-        // }
-    // }
 }
 function MoveSpotlight(){
     spotLight.angle= Math.PI/angleNUM;

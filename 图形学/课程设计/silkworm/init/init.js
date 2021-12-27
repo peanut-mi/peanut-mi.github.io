@@ -11,5 +11,5 @@ function init(){
     if(controls.directionlight) initDirectionLight();
     
     
-    // initTrackballControls(); //轨迹球控制
+    initTrackballControls(); //轨迹球控制
 }

@@ -2,7 +2,6 @@ var plane;
 function initPlane(planecolor, angle){
     if(plane instanceof THREE.Mesh){
         scene.remove(plane);
-        // console.log('yes');
     }
     var planeGeometry = new THREE.PlaneGeometry(60, 30);
     var planeMaterial = new THREE.MeshLambertMaterial({color: planecolor});

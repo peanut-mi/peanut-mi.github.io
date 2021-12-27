@@ -2,13 +2,6 @@ var controls;
 function addGUI(){
     controls = new function(){
     
-        this.begin = false;
-        var flag=1;
-        this.growth = function(){
-            if(flag==1) this.begin = true;
-            else this.begin = false;
-            flag*=-1;
-        }
         this.lightUP = "S键控制点光照角度缩小";
         this.lightDown = "W键控制点光照角度增大";
         this.lightLeft = "A键控制点光照沿z轴缩小";
@@ -29,15 +22,6 @@ function addGUI(){
         this.plane = true;
         this.planecolor = "#112233";
         this.planeangle = 0.5;
-        this.planeincline1 = function(){
-            this.planeangle = 0.28;
-        }
-        this.planeincline2 = function(){
-            this.planeangle = 0.45;
-        }
-        this.planeincline3 = function(){
-            this.planeangle = 0.7;
-        }
 
         this.js = '控件不能改变效果';
         this.ambientlight = true;//环境光
@@ -112,7 +96,6 @@ function addGUI(){
     };
 
     var gui = new dat.GUI();
-    gui.add(controls, "growth");
 
     var explain = gui.addFolder('explain');
     var lightexplain = explain.addFolder('lightexplain');
@@ -138,29 +121,25 @@ function addGUI(){
 
     var plane = gui.addFolder('plane');
     plane.add(controls, 'plane').name("平面");
-    // plane.addColor(controls, 'planecolor').name("平面颜色");
-    // plane.add(controls, 'planeangle', -1, 1).name("平面角度");
-    plane.add(controls, 'planeincline1').name("平面角度1");
-    plane.add(controls, 'planeincline2').name("平面角度2");
-    plane.add(controls, 'planeincline3').name("平面角度3");
+    plane.addColor(controls, 'planecolor').name("平面颜色");
+    plane.add(controls, 'planeangle', -1, 1).name("平面角度");
 
-
-    // var light = gui.addFolder('light-not change');
-    // light.add(controls, 'js').name('说明');
-    // light.add(controls, 'ambientlight').name("显示环境光");
-    // // light.addColor(controls, 'ambientcolor').name("环境光颜色");
-    // light.add(controls, 'spotlight').name("显示点光源");
-    // // light.addColor(controls, 'spotcolor').name("点光源颜色");
-    // light.add(controls, 'directionlight').name("显示平行光");
-    // // light.addColor(controls, 'directioncolor').name("平行光颜色");
+    var light = gui.addFolder('light-not change');
+    light.add(controls, 'js').name('说明');
+    light.add(controls, 'ambientlight').name("显示环境光");
+    light.addColor(controls, 'ambientcolor').name("环境光颜色");
+    light.add(controls, 'spotlight').name("显示点光源");
+    light.addColor(controls, 'spotcolor').name("点光源颜色");
+    light.add(controls, 'directionlight').name("显示平行光");
+    light.addColor(controls, 'directioncolor').name("平行光颜色");
 
     var wire = gui.addFolder('wire');
     wire.add(controls, 'eyewireframe').name("眼睛线框结构");
     wire.add(controls, 'bodywireframe1').name("身体线框结构1");
     wire.add(controls, 'bodywireframe2').name("身体线框结构2");
-    // wire.addColor(controls, 'eyecolor').name("眼睛颜色");
-    // wire.addColor(controls, 'bodycolor1').name("身体颜色1");
-    // wire.addColor(controls, 'bodycolor2').name("身体颜色2");
+    wire.addColor(controls, 'eyecolor').name("眼睛颜色");
+    wire.addColor(controls, 'bodycolor1').name("身体颜色1");
+    wire.addColor(controls, 'bodycolor2').name("身体颜色2");
 
     // silkwarm.add(controls, 'size', 0.01, 5).name("身体大小");
     var size = gui.addFolder('size');
