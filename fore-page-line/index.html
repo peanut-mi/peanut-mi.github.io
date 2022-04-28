@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>折线/曲线图数据提取平台</title>
+        <script src="js/echarts.common.min.js"></script>
+        <script src="js/jquery-1.x.js"></script>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <script src="js/bootstrap.min.js"></script>
+
+        <!-- AgileUI CSS Core -->
+        <link rel="stylesheet" type="text/css" href="assets/css/minified/aui-production.min.css">
+
+        <!-- Theme UI -->
+        <link id="layout-theme" rel="stylesheet" type="text/css" href="assets/themes/minified/agileui/color-schemes/layouts/default.min.css">
+        <link id="elements-theme" rel="stylesheet" type="text/css" href="assets/themes/minified/agileui/color-schemes/elements/default.min.css">
+>
+        <style>
+            #head1{
+                position: fixed;
+                top: 0px;
+                left:0px;
+                height: 8.7%;
+                width: 20%;
+                background-color: #2B394A;
+                margin: 0;
+                font-size: 16px ;
+                color: white;
+                line-height: 50px;
+                overflow: hidden;
+            }
+            #head2{
+                position: fixed;
+                top: 0px;
+                right: 0px;
+                height: 8.7%;
+                width: 80%;
+                background-color: #2d435e;
+                margin: 0;
+                font-size: 16px ;
+                color: white;
+                line-height: 50px;
+                overflow: hidden;
+            }
+            #sidebar-menu{
+                background-color: #E4E9F0;
+                position: fixed;
+                left: 0;
+                top: 50px;
+                width: 20%;
+                height: 100%;
+                overflow: auto;
+
+            }
+
+            #contt{
+                position: absolute;
+                margin-top: 50px;
+                height: 91.3%;
+                right: 0;
+                width: 79%;
+                overflow-y: scroll;
+                overflow-x: hidden;
+            }
+            div::-webkit-scrollbar {
+                width:3px;
+                background-color: #ccc;
+            }
+            div::-webkit-scrollbar:vertical {
+                width: 0.8rem;
+                /*滚动条整体宽度*/
+            }
+            div::-webkit-scrollbar:horizontal {
+                height: 0.06rem;
+            }
+            div::-webkit-scrollbar-thumb {
+                background-color: #2d435e;
+                border-radius: 0.03rem;
+            }
+            div ::-webkit-scrollbar-thumb {
+                /*滚动条里面的滑块*/
+                border-radius: 10px;
+            }
+            li a{
+                color: #2B394A;
+                text-decoration: none;
+            }
+
+            .title{
+                font-size: 30px;
+            }
+
+            button{
+                margin: 20px 10px;
+                background-color: white;
+                border-width: 1px;
+                border-radius: 5px;
+                padding: 3px;
+                /* padding: 10px; */
+            }
+            .a-upload {
+                padding: 4px 10px;
+                height: 30px;
+                line-height: 20px;
+                position: relative;
+                cursor: pointer;
+                color: #888;
+                background: white;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                overflow: hidden;
+                display: inline-block;
+                *display: inline;
+                *zoom: 1;
+                margin: 10px;
+            }
+
+            .a-upload  input {
+                position: absolute;
+                font-size: 100px;
+                right: 0;
+                top: 0;
+                opacity: 0;
+                filter: alpha(opacity=0);
+                cursor: pointer
+            }
+
+            .a-upload:hover {
+                color: #444;
+                background: #eee;
+                border-color: #ccc;
+                text-decoration: none
+            }
+            .li a{
+                text-decoration: none;
+            }
+            .zilist{
+                background-color: #F2F4F8;
+                width: 80%;
+                float: right;
+            }
+        </style>
+
+        
+    </head>
+    <body>
+        <div id="head1">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;折线/曲线图数据提取平台
+        </div>
+        <div id="head2">
+
+        </div>
+
+        <div id="sidebar-menu" class="scrollable-content">
+            <div id="direct" float="left" width="20%">
+                <ul>
+                    <li class="li">
+                        <a href="index.html"><img src="icon/shouye.png" height="20px" width="22px">&nbsp;&nbsp;&nbsp;首页</a>
+                    </li>
+                    <li class="li"><a href="#cy"><img src="icon/chouyang.png" height="20px" width="22px">&nbsp;&nbsp;&nbsp;提取折线/曲线图</a></li>
+                    <li class="li">
+                        <a href="#pic"><img src="icon/fuxian.png" height="18px" width="20px">&nbsp;&nbsp;&nbsp;复现折线/曲线图</a>
+                    </li>
+                    <li class="li">
+                        <a href="#data"><img src="icon/data.png" height="20px" width="22px">&nbsp;&nbsp;&nbsp;复现数据</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+        
+
+        <div class="wrap">
+        
+            <div id="contt" class="scrollable-content">
+                <div class="title" id="cy">提取折线/曲线图</div>
+                <p class="font-gray-dark">
+                    上传折线/曲线图，点击识别按钮，即可提取图片数据，并获得默认五等分点的值。<br />
+                </p>
+
+                <div class="example-box">
+                    <div class="example-code clearfix">
+
+                    <div>
+                        <div >
+                            <a href="javascript:;" class="a-upload">
+                                <input type="file" name="" id="">上传折线/曲线图
+                            </a>
+                        </div>
+                        <div class="float-left mrg10R mrg10T">
+                            <img id="loadimg" src="img/draw0.png" style="height:384px; width:512px" alt="Image preview area..." title="preview-img">
+                            <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;
+                            <button type="button" class="input" onclick="shibie()">识别</button>
+                            <div class="float-left mrg10R mrg10T">
+                                &nbsp;&nbsp;&nbsp;
+                                <label>点1</label>
+                                <input type="text" size="3" id="x1" name="x1" class="points" value="0.00">
+                        </div>
+                        
+                        <div class="float-left mrg10R mrg10T">
+                            &nbsp;&nbsp;&nbsp;
+                            <label>点2</label>
+                            <input type="text" size="4" id="x2" name="y1" class="points" value="0.00">
+                        </div>
+                        
+                        <div class="float-left mrg10R mrg10T">
+                            &nbsp;&nbsp;&nbsp;
+                            <label>点3</label>
+                            <input type="text" size="4" id="x3" name="x2" class="points" value="0.00">
+                        </div>
+                        
+                        <div class="float-left mrg10R mrg10T">
+                            &nbsp;&nbsp;&nbsp;
+                            <label>点4</label>
+                            <input type="text" size="4" id="x4" name="y2" class="points" value="0.00">
+                        </div>
+                        <div class="float-left mrg10R mrg10T">
+                            &nbsp;&nbsp;&nbsp;
+                            <label>点5</label>
+                            <input type="text" size="3" id="x5" name="w" class="points" value="0.00">
+                        </div>
+                    </div>
+                </div>
+    
+                <script>
+                    var fileInput = document.querySelector('input[type=file]'),previewImg = document.querySelector('img');
+                    fileInput.addEventListener('change', function () {
+                        var file = this.files[0];
+                        var reader = new FileReader();
+                        // 监听reader对象的的onload事件，当图片加载完成时，把base64编码賦值给预览图片
+                        reader.addEventListener("load", function () {
+                            $("#loadimg").attr('src', reader.result);
+                        }, false);
+                        // 调用reader.readAsDataURL()方法，把图片转成base64
+                        reader.readAsDataURL(file);
+                    }, false);
+                </script>
+
+                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                <hr>
+                <div class="title" id="tiqu">复现折线/曲线图</div>
+                <p class="font-gray-dark">
+                    根据所提取的折线/曲线图数据，进行复现，点击复现按钮即可查看复现的折线/曲线图。<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button onclick="fuxian()" type="button" class="input" >复现</button>
+                </p>
+                
+                <script type="text/javascript">
+
+                    function shibie(){
+                        var x = [16.83, 23.91, 3.75, 8.73, 5.13];
+                        for(var i = 0; i < x.length; i++){
+                            $("#x"+(i+1)).attr("value",x[i]);
+                            // console.log(i)
+                        }
+                        
+                        $("#loadimg").attr('src', 'img/draw4_r.png');
+                    }
+                    function fuxian(){
+                        if($("#linefuxian").css("display") == 'none'){
+                            $("#linefuxian").show();
+                        }else{
+                            $("#linefuxian").hide();
+                        }
+                    }
+                </script>  
+                
+                <div id="pic">
+                    <div id="linefuxian"  class="example-box" style="display:none">
+                        <div class="example-code clearfix">
+                            <div style="width:800px">
+                                <div id="chouyang" style="width:400px; float:left;height:400px"></div>
+                                <div id="zhexiannihe" style="width:400px; float:right; height:400px"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <script type="text/javascript">
+                    //指定图表的配置项和数据
+                    var option = {
+                        //标题
+                        title:{
+                            text:'抽样5个点'
+                        },
+                        //鼠标移上产生响应
+                        tooltip:{},
+                        //工具箱
+                        toolbox:{
+                            show:true,
+                            feature:{
+                                saveAsImage:{
+                                    show: true
+                                }
+                            }
+                        },
+                        //图例
+                        legend:{
+                            data:['y']
+                        },
+                        xAxis:{
+                            
+                            data:[0, 15, 30, 45, 59]
+                        },
+                        yAxis:{}, //轴没有显示设置,根据值自动生成
+                        series:[{
+                            name:'识别结果坐标值',
+                            type:'line',
+                            data:[16.83, 23.91, 3.75, 8.73, 5.13],
+                            smooth:true //光滑曲线
+                        }
+                        // ,{
+                        //     name:'真实标签坐标值',
+                        //     type:'line',
+                        //     data:[17.17, 24.28, 3.78, 8.58, 5.06],
+                        //     smooth:true //光滑曲线
+                        // }
+                    ]
+                    };
+                    //初始化实例
+                    var myChart = echarts.init(document.getElementById("chouyang"));
+                    //使用刚刚指定的配置项和数据项显示图表
+                    myChart.setOption(option);
+        
+                    var option2 = {
+                        //标题
+                        title:{
+                            text:'复现曲线/折线图'
+                        },
+                        //鼠标移上产生响应
+                        tooltip:{},
+                        //工具箱
+                        toolbox:{
+                            show:true,
+                            feature:{
+                                saveAsImage:{
+                                    show: true
+                                }
+                            }
+                        },
+                        //图例
+                        legend:{
+                            data:['y']
+                        },
+                        xAxis:{
+                            data:[0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.5, 5.0, 5.5, 6.0, 6.5, 7.0, 7.5, 8.0, 8.5, 9.0, 9.5, 10.0, 10.5, 11.0, 11.5, 12.0, 12.5, 13.0, 13.5, 14.0, 14.5, 15.0, 15.5, 16.0, 16.5, 17.0, 17.5, 18.0, 18.5, 19.0, 19.5, 20.0, 20.5, 21.0, 21.5, 22.0, 22.5, 23.0, 23.5, 24.0, 24.5, 25.0, 25.5, 26.0, 26.5, 27.0, 27.5, 28.0, 28.5, 29.0, 29.5, 30.0, 30.5, 31.0, 31.5, 32.0, 32.5, 33.0, 33.5, 34.0, 34.5, 35.0, 35.5, 36.0, 36.5, 37.0, 37.5, 38.0, 38.5, 39.0, 39.5, 40.0, 40.5, 41.0, 41.5, 42.0, 42.5, 43.0, 43.5, 44.0, 44.5, 45.0, 45.5, 46.0, 46.5, 47.0, 47.5, 48.0, 48.5, 49.0, 49.5, 50.0, 50.5, 51.0, 51.5, 52.0, 52.5, 53.0, 53.5, 54.0, 54.5, 55.0, 55.5, 56.0, 56.5, 57.0, 57.5, 58.0, 58.5, 59.0, 59.5]
+                        },
+                        yAxis:{}, //轴没有显示设置,根据值自动生成
+                        series:[{
+                            name:'识别结果坐标值',
+                            type:'line',
+                            // showAllSymbol: true, //展示绘制图片的所有点
+                            //曲线12
+                            data:
+                            // [50.34905660377359, 94.41509433962264, 65.37735849056605, 38.122641509433976, 3.226415094339629, 53.91509433962265, 77.09433962264151, 65.88679245283019, 45.25471698113208, 32.26415094339623, 43.72641509433963, 57.481132075471706, 54.93396226415095, 35.57547169811322, 2.2075471698113347, 27.679245283018872, 69.19811320754718, 83.97169811320755, 83.97169811320755, 78.11320754716982, 71.74528301886792, 73.52830188679246, 76.83962264150944, 70.72641509433963, 55.4433962264151, 39.9056603773585, 3.735849056603783, 11.377358490566039, 28.188679245283026, 43.47169811320755, 31.245283018867937, 3.481132075471706, -1.3584905660377302, 36.08490566037736, 79.89622641509435, 91.8679245283019, 77.85849056603774, 59.00943396226416, 63.33962264150944, 51.11320754716982, 26.660377358490578, -6.452830188679243, -8.235849056603769, 1.1886792452830264, 53.66037735849057, 86.26415094339623, 85.75471698113208, 69.19811320754718, 51.11320754716982, 56.20754716981133, 69.96226415094341, 87.7924528301887, 88.04716981132076, 71.49056603773585, 43.981132075471706, 22.839622641509436, 8.830188679245296, 16.47169811320755, 29.462264150943398, 42.707547169811335, 35.57547169811322, 28.443396226415103, 35.830188679245296, 47.801886792452834, 58.754716981132084, 64.61320754716982, 59.773584905660385, 51.622641509433976, 46.78301886792454, 48.31132075471699, 50.34905660377359, 52.89622641509435, 51.622641509433976, 54.93396226415095, 61.301886792452834, 66.65094339622642, 52.64150943396227, 32.009433962264154, 31.245283018867937, 47.54716981132076, 58.50000000000001, 74.03773584905662, 73.52830188679246, 90.33962264150944, 83.97169811320755, 49.330188679245296, 55.4433962264151, 77.09433962264151, 76.83962264150944, 59.51886792452831, 45.76415094339623, 40.16037735849058, 49.330188679245296, 61.047169811320764, 61.047169811320764, 53.91509433962265, 62.066037735849065, 76.0754716981132, 87.7924528301887, 80.15094339622642, 84.4811320754717, 94.16037735849058, 88.81132075471699, 56.97169811320755, 21.820754716981142, -6.452830188679243, -1.8679245283018844, 14.688679245283026, 14.688679245283026, 4.754716981132077, 4.245283018867937, 23.34905660377359, 39.9056603773585, 40.16037735849058, 30.99056603773586, 20.801886792452834, 29.207547169811335, 54.169811320754725, 86.26415094339623, 51.877358490566046],
+                            [16.83, 7.77, 2.97, 2.61, 9.93, 19.77, 26.07, 20.55, 22.05, 29.55, 26.97, 21.63, 17.13, 13.59, 9.15, 7.17, 10.59, 14.37, 13.17, 10.35, 11.07, 15.51, 22.35, 26.13, 22.47, 16.71, 20.37, 28.35, 30.27, 25.71, 24.21, 25.83, 26.37, 25.65, 24.99, 23.61, 17.55, 8.79, 8.43, 12.27, 13.71, 8.79, 2.97, 0.09, 0.87, 6.09, 12.15, 15.99, 12.63, 3.75, 7.59, 21.15, 27.57, 12.15, 3.99, 17.01, 28.41, 18.81, 6.51, 2.67, 3.75, 1.95, 2.25, 11.01, 20.85, 29.61, 26.97, 12.03, 2.91, 12.33, 28.11, 26.79, 16.05, 8.07, 9.39, 18.09, 23.61, 14.43, 2.31, 8.01, 24.33, 24.39, 12.39, 2.37, 1.05, 2.73, 3.93, 4.77, 4.29, 3.99, 6.45, 11.55, 18.09, 15.33, 6.21, 8.31, 19.53, 22.41, 13.11, 3.75, 4.83, 9.03, 10.95, 14.19, 18.93, 17.67, 8.43, 7.35, 18.27, 25.59, 17.07, 7.83, 8.13, 13.41, 13.83, 10.77, 6.87, 3.51, 5.13],
+                            smooth:false //光滑曲线
+                            // itemStyle:{
+                            //     normal:{
+                            //         label:{
+                            //             show:true
+                            //         }
+                            //     }
+                            // } //显示数值在折线上
+                        }
+                    ]
+                    };
+                    //初始化实例
+                    var myChart2 = echarts.init(document.getElementById("zhexiannihe"));
+                    //使用刚刚指定的配置项和数据项显示图表
+                    myChart2.setOption(option2);
+                </script>
+                
+                <script>
+                    function showTable1(){
+                        if($("#table1").css("display") == 'none'){
+                            $("#table1").show();
+                        }else{
+                            $("#table1").hide();
+                        }
+                    }
+                    function showTable2(){
+                        if($("#table2").css("display") == 'none'){
+                            $("#table2").show();
+                        }else{
+                            $("#table2").hide();
+                        }
+                    }
+                </script>
+
+                <script type="text/javascript">
+                    var x1 = [0, 15, 30, 45, 59];
+                    var y1 = [16.83, 23.91, 3.75, 8.73, 5.13]
+                    for(var i = 0; i < x1.length; i++){
+                        var tdi = $("<tr><td>"+(i+1)+"</td><td>"+x1[i]+"</td><td>"+y1[i]+"</td></tr>");
+                        $("#table1").append(tdi);
+                    }
+
+                    var x2 = [0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.5, 5.0, 5.5, 6.0, 6.5, 7.0, 7.5, 8.0, 8.5, 9.0, 9.5, 10.0, 10.5, 11.0, 11.5, 12.0, 12.5, 13.0, 13.5, 14.0, 14.5, 15.0, 15.5, 16.0, 16.5, 17.0, 17.5, 18.0, 18.5, 19.0, 19.5, 20.0, 20.5, 21.0, 21.5, 22.0, 22.5, 23.0, 23.5, 24.0, 24.5, 25.0, 25.5, 26.0, 26.5, 27.0, 27.5, 28.0, 28.5, 29.0, 29.5, 30.0, 30.5, 31.0, 31.5, 32.0, 32.5, 33.0, 33.5, 34.0, 34.5, 35.0, 35.5, 36.0, 36.5, 37.0, 37.5, 38.0, 38.5, 39.0, 39.5, 40.0, 40.5, 41.0, 41.5, 42.0, 42.5, 43.0, 43.5, 44.0, 44.5, 45.0, 45.5, 46.0, 46.5, 47.0, 47.5, 48.0, 48.5, 49.0, 49.5, 50.0, 50.5, 51.0, 51.5, 52.0, 52.5, 53.0, 53.5, 54.0, 54.5, 55.0, 55.5, 56.0, 56.5, 57.0, 57.5, 58.0, 58.5, 59.0, 59.5];
+                    var y2 = [16.83, 7.77, 2.97, 2.61, 9.93, 19.77, 26.07, 20.55, 22.05, 29.55, 26.97, 21.63, 17.13, 13.59, 9.15, 7.17, 10.59, 14.37, 13.17, 10.35, 11.07, 15.51, 22.35, 26.13, 22.47, 16.71, 20.37, 28.35, 30.27, 25.71, 24.21, 25.83, 26.37, 25.65, 24.99, 23.61, 17.55, 8.79, 8.43, 12.27, 13.71, 8.79, 2.97, 0.09, 0.87, 6.09, 12.15, 15.99, 12.63, 3.75, 7.59, 21.15, 27.57, 12.15, 3.99, 17.01, 28.41, 18.81, 6.51, 2.67, 3.75, 1.95, 2.25, 11.01, 20.85, 29.61, 26.97, 12.03, 2.91, 12.33, 28.11, 26.79, 16.05, 8.07, 9.39, 18.09, 23.61, 14.43, 2.31, 8.01, 24.33, 24.39, 12.39, 2.37, 1.05, 2.73, 3.93, 4.77, 4.29, 3.99, 6.45, 11.55, 18.09, 15.33, 6.21, 8.31, 19.53, 22.41, 13.11, 3.75, 4.83, 9.03, 10.95, 14.19, 18.93, 17.67, 8.43, 7.35, 18.27, 25.59, 17.07, 7.83, 8.13, 13.41, 13.83, 10.77, 6.87, 3.51, 5.13];
+                    for(var i = 0; i < x2.length; i++){
+                        var tdi = $("<tr><td>"+(i+1)+"</td><td>"+x2[i]+"</td><td>"+y2[i]+"</td></tr>");
+                        $("#table2").append(tdi);
+                    }
+                </script>
+
+                <script type="text/javascript">
+                    function table2Excel1(){
+                        str = "No.,\tx,\ty\n";
+                        var x = [0, 15, 30, 45, 59];
+                        var y = [16.83, 23.91, 3.75, 8.73, 5.13];
+                        for(let i = 0; i < y.length; i++){
+                            str += ((i+1)+",\t");
+                            str += (x[i]+",\t");
+                            str += (y[i]+",\t");
+                            str += "\n";
+                        }
+                        //encodeURIComponent解决中文乱码
+                        let uri = 'data:text/csv;charset=utf-8,\ufeff' + encodeURIComponent(str);
+                        //通过创建a标签实现
+                        let link = document.createElement("a");
+                        link.href = uri;
+                        //对下载的文件命名
+                        link.download =  "5个抽样点的数值数据表.csv";
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                    }
+
+                    function table2Excel2(){
+                        str = "No.,\tx,\ty\t\n";
+                        var x = [0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.5, 5.0, 5.5, 6.0, 6.5, 7.0, 7.5, 8.0, 8.5, 9.0, 9.5, 10.0, 10.5, 11.0, 11.5, 12.0, 12.5, 13.0, 13.5, 14.0, 14.5, 15.0, 15.5, 16.0, 16.5, 17.0, 17.5, 18.0, 18.5, 19.0, 19.5, 20.0, 20.5, 21.0, 21.5, 22.0, 22.5, 23.0, 23.5, 24.0, 24.5, 25.0, 25.5, 26.0, 26.5, 27.0, 27.5, 28.0, 28.5, 29.0, 29.5, 30.0, 30.5, 31.0, 31.5, 32.0, 32.5, 33.0, 33.5, 34.0, 34.5, 35.0, 35.5, 36.0, 36.5, 37.0, 37.5, 38.0, 38.5, 39.0, 39.5, 40.0, 40.5, 41.0, 41.5, 42.0, 42.5, 43.0, 43.5, 44.0, 44.5, 45.0, 45.5, 46.0, 46.5, 47.0, 47.5, 48.0, 48.5, 49.0, 49.5, 50.0, 50.5, 51.0, 51.5, 52.0, 52.5, 53.0, 53.5, 54.0, 54.5, 55.0, 55.5, 56.0, 56.5, 57.0, 57.5, 58.0, 58.5, 59.0, 59.5];
+                        var y = [16.83, 7.77, 2.97, 2.61, 9.93, 19.77, 26.07, 20.55, 22.05, 29.55, 26.97, 21.63, 17.13, 13.59, 9.15, 7.17, 10.59, 14.37, 13.17, 10.35, 11.07, 15.51, 22.35, 26.13, 22.47, 16.71, 20.37, 28.35, 30.27, 25.71, 24.21, 25.83, 26.37, 25.65, 24.99, 23.61, 17.55, 8.79, 8.43, 12.27, 13.71, 8.79, 2.97, 0.09, 0.87, 6.09, 12.15, 15.99, 12.63, 3.75, 7.59, 21.15, 27.57, 12.15, 3.99, 17.01, 28.41, 18.81, 6.51, 2.67, 3.75, 1.95, 2.25, 11.01, 20.85, 29.61, 26.97, 12.03, 2.91, 12.33, 28.11, 26.79, 16.05, 8.07, 9.39, 18.09, 23.61, 14.43, 2.31, 8.01, 24.33, 24.39, 12.39, 2.37, 1.05, 2.73, 3.93, 4.77, 4.29, 3.99, 6.45, 11.55, 18.09, 15.33, 6.21, 8.31, 19.53, 22.41, 13.11, 3.75, 4.83, 9.03, 10.95, 14.19, 18.93, 17.67, 8.43, 7.35, 18.27, 25.59, 17.07, 7.83, 8.13, 13.41, 13.83, 10.77, 6.87, 3.51, 5.13];
+                        for(let i = 0; i < x.length; i++){
+                            str += (i+",\t");
+                            str += (x[i]+",\t");
+                            str += (y[i]+",\t");
+                            str += "\n";
+                        }
+                        //encodeURIComponent解决中文乱码
+                        let uri = 'data:text/csv;charset=utf-8,\ufeff' + encodeURIComponent(str);
+                        //通过创建a标签实现
+                        let link = document.createElement("a");
+                        link.href = uri;
+                        //对下载的文件命名
+                        link.download =  "多个抽样点的数值数据表.csv";
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                    }
+                </script>
+
+            </div>
+                
+            <hr>
+            <div class="title" id="data">复现数据</div>
+                <p class="font-gray-dark">
+                    点击查看查看数据按钮，即可查看提取的数据。点击保存按钮，即可将数据下载保存。<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </p>
+            <div>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button onclick="showTable1()" id="showexcel1" data-table="#tableGrid" type="button" style="height:30px">查看抽样数据</button>
+                <button onclick="table2Excel1()" id="daochu1" data-table="#tableGrid"  type="button" style="height:30px">导出抽样数据</button>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button onclick="showTable2()" id="showexcel2" data-table="#tableGrid" type="button" style="height:30px">查看数值数据</button>
+                <button onclick="table2Excel2()" id="daochu2" data-table="#tableGrid"  type="button" style="height:30px">导出数值数据</button>
+                <div style="width:800px">
+                    <div style="float:left; width:400px">
+                        <table id="table1" class="table table-hover" style="width:450px; display:none" data-mobile-responsive="true">
+                            <thread>
+                                <tr>
+                                    <th>No.</th>
+                                    <th>x</th>
+                                    <th>y</th>
+                                </tr>
+                                
+                            </thread>
+                        </table>
+                    </div>
+                    <div style="float:right; width:400px">
+                        <table id="table2" class="table table-hover" style="width:450px; display:none" data-mobile-responsive="true">
+                            <thread>
+                                <tr>
+                                    <th>No.</th>
+                                    <th>x</th>
+                                    <th>y</th>
+                                </tr>
+                                
+                            </thread>
+                        </table>
+                    </div>
+                    
+                </div>
+                
+                </div>
+                
+                <script>
+                    function showTable1(){
+                        if($("#table1").css("display") == 'none'){
+                            $("#table1").show();
+                        }else{
+                            $("#table1").hide();
+                        }
+                    }
+                    function showTable2(){
+                        if($("#table2").css("display") == 'none'){
+                            $("#table2").show();
+                        }else{
+                            $("#table2").hide();
+                        }
+                    }
+                </script>
+
+                <script type="text/javascript">
+                    var x1 = [0, 15, 30, 45, 59];
+                    var y1 = [16.83, 23.91, 3.75, 8.73, 5.13]
+                    for(var i = 0; i < x1.length; i++){
+                        var tdi = $("<tr><td>"+(i+1)+"</td><td>"+x1[i]+"</td><td>"+y1[i]+"</td></tr>");
+                        $("#table1").append(tdi);
+                    }
+
+                    var x2 = [0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.5, 5.0, 5.5, 6.0, 6.5, 7.0, 7.5, 8.0, 8.5, 9.0, 9.5, 10.0, 10.5, 11.0, 11.5, 12.0, 12.5, 13.0, 13.5, 14.0, 14.5, 15.0, 15.5, 16.0, 16.5, 17.0, 17.5, 18.0, 18.5, 19.0, 19.5, 20.0, 20.5, 21.0, 21.5, 22.0, 22.5, 23.0, 23.5, 24.0, 24.5, 25.0, 25.5, 26.0, 26.5, 27.0, 27.5, 28.0, 28.5, 29.0, 29.5, 30.0, 30.5, 31.0, 31.5, 32.0, 32.5, 33.0, 33.5, 34.0, 34.5, 35.0, 35.5, 36.0, 36.5, 37.0, 37.5, 38.0, 38.5, 39.0, 39.5, 40.0, 40.5, 41.0, 41.5, 42.0, 42.5, 43.0, 43.5, 44.0, 44.5, 45.0, 45.5, 46.0, 46.5, 47.0, 47.5, 48.0, 48.5, 49.0, 49.5, 50.0, 50.5, 51.0, 51.5, 52.0, 52.5, 53.0, 53.5, 54.0, 54.5, 55.0, 55.5, 56.0, 56.5, 57.0, 57.5, 58.0, 58.5, 59.0, 59.5];
+                    var y2 = [16.83, 7.77, 2.97, 2.61, 9.93, 19.77, 26.07, 20.55, 22.05, 29.55, 26.97, 21.63, 17.13, 13.59, 9.15, 7.17, 10.59, 14.37, 13.17, 10.35, 11.07, 15.51, 22.35, 26.13, 22.47, 16.71, 20.37, 28.35, 30.27, 25.71, 24.21, 25.83, 26.37, 25.65, 24.99, 23.61, 17.55, 8.79, 8.43, 12.27, 13.71, 8.79, 2.97, 0.09, 0.87, 6.09, 12.15, 15.99, 12.63, 3.75, 7.59, 21.15, 27.57, 12.15, 3.99, 17.01, 28.41, 18.81, 6.51, 2.67, 3.75, 1.95, 2.25, 11.01, 20.85, 29.61, 26.97, 12.03, 2.91, 12.33, 28.11, 26.79, 16.05, 8.07, 9.39, 18.09, 23.61, 14.43, 2.31, 8.01, 24.33, 24.39, 12.39, 2.37, 1.05, 2.73, 3.93, 4.77, 4.29, 3.99, 6.45, 11.55, 18.09, 15.33, 6.21, 8.31, 19.53, 22.41, 13.11, 3.75, 4.83, 9.03, 10.95, 14.19, 18.93, 17.67, 8.43, 7.35, 18.27, 25.59, 17.07, 7.83, 8.13, 13.41, 13.83, 10.77, 6.87, 3.51, 5.13];
+                    for(var i = 0; i < x2.length; i++){
+                        var tdi = $("<tr><td>"+(i+1)+"</td><td>"+x2[i]+"</td><td>"+y2[i]+"</td></tr>");
+                        $("#table2").append(tdi);
+                    }
+
+                    
+
+                </script>
+
+                <script type="text/javascript">
+                    function table2Excel1(){
+                        str = "No.,\tx,\ty\n";
+                        var x = [0, 15, 30, 45, 59];
+                        var y = [16.83, 23.91, 3.75, 8.73, 5.13];
+                        for(let i = 0; i < y.length; i++){
+                            str += ((i+1)+",\t");
+                            str += (x[i]+",\t");
+                            str += (y[i]+",\t");
+                            str += "\n";
+                        }
+                        //encodeURIComponent解决中文乱码
+                        let uri = 'data:text/csv;charset=utf-8,\ufeff' + encodeURIComponent(str);
+                        //通过创建a标签实现
+                        let link = document.createElement("a");
+                        link.href = uri;
+                        //对下载的文件命名
+                        link.download =  "5个抽样点的数值数据表.csv";
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                    }
+
+                    function table2Excel2(){
+                        str = "No.,\tx,\ty\t\n";
+                        var x = [0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.5, 5.0, 5.5, 6.0, 6.5, 7.0, 7.5, 8.0, 8.5, 9.0, 9.5, 10.0, 10.5, 11.0, 11.5, 12.0, 12.5, 13.0, 13.5, 14.0, 14.5, 15.0, 15.5, 16.0, 16.5, 17.0, 17.5, 18.0, 18.5, 19.0, 19.5, 20.0, 20.5, 21.0, 21.5, 22.0, 22.5, 23.0, 23.5, 24.0, 24.5, 25.0, 25.5, 26.0, 26.5, 27.0, 27.5, 28.0, 28.5, 29.0, 29.5, 30.0, 30.5, 31.0, 31.5, 32.0, 32.5, 33.0, 33.5, 34.0, 34.5, 35.0, 35.5, 36.0, 36.5, 37.0, 37.5, 38.0, 38.5, 39.0, 39.5, 40.0, 40.5, 41.0, 41.5, 42.0, 42.5, 43.0, 43.5, 44.0, 44.5, 45.0, 45.5, 46.0, 46.5, 47.0, 47.5, 48.0, 48.5, 49.0, 49.5, 50.0, 50.5, 51.0, 51.5, 52.0, 52.5, 53.0, 53.5, 54.0, 54.5, 55.0, 55.5, 56.0, 56.5, 57.0, 57.5, 58.0, 58.5, 59.0, 59.5];
+                        var y = [16.83, 7.77, 2.97, 2.61, 9.93, 19.77, 26.07, 20.55, 22.05, 29.55, 26.97, 21.63, 17.13, 13.59, 9.15, 7.17, 10.59, 14.37, 13.17, 10.35, 11.07, 15.51, 22.35, 26.13, 22.47, 16.71, 20.37, 28.35, 30.27, 25.71, 24.21, 25.83, 26.37, 25.65, 24.99, 23.61, 17.55, 8.79, 8.43, 12.27, 13.71, 8.79, 2.97, 0.09, 0.87, 6.09, 12.15, 15.99, 12.63, 3.75, 7.59, 21.15, 27.57, 12.15, 3.99, 17.01, 28.41, 18.81, 6.51, 2.67, 3.75, 1.95, 2.25, 11.01, 20.85, 29.61, 26.97, 12.03, 2.91, 12.33, 28.11, 26.79, 16.05, 8.07, 9.39, 18.09, 23.61, 14.43, 2.31, 8.01, 24.33, 24.39, 12.39, 2.37, 1.05, 2.73, 3.93, 4.77, 4.29, 3.99, 6.45, 11.55, 18.09, 15.33, 6.21, 8.31, 19.53, 22.41, 13.11, 3.75, 4.83, 9.03, 10.95, 14.19, 18.93, 17.67, 8.43, 7.35, 18.27, 25.59, 17.07, 7.83, 8.13, 13.41, 13.83, 10.77, 6.87, 3.51, 5.13];
+                        for(let i = 0; i < x.length; i++){
+                            str += (i+",\t");
+                            str += (x[i]+",\t");
+                            str += (y[i]+",\t");
+                            str += "\n";
+                        }
+                        //encodeURIComponent解决中文乱码
+                        let uri = 'data:text/csv;charset=utf-8,\ufeff' + encodeURIComponent(str);
+                        //通过创建a标签实现
+                        let link = document.createElement("a");
+                        link.href = uri;
+                        //对下载的文件命名
+                        link.download =  "多个抽样点的数值数据表.csv";
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                    }
+                </script>
+
+            </div>
+        </div>
+    </div>
+
+    </body>
+</html>
