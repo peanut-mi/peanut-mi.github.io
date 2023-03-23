@@ -27,6 +27,7 @@ div.welcome {
 .content{
 	text-align: left;
 	width: 70%;
+	padding:15px;
 }
 .content a{
 	color: black;;
@@ -35,6 +36,9 @@ div.welcome {
 	background-color: #8FAB65;
 	color: black;
 	margin: 10px;
+}
+.content li{
+	padding:20px;
 }
 
 

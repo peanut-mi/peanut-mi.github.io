@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数据详情</title>
+    <link rel="stylesheet" href="js/bstable/css/bootstrap.min.css">
+    <link rel="stylesheet" href="js/bstable/css/bootstrap-table.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link href="css/zTreeStyle/zTreeStyle.css" rel="stylesheet" type="text/css" />
+    
+    
+</head>
+<style>
+
+</style>
+<body>
+<!--顶部-->
+<header class="header left">
+    <div class="left nav">
+        <ul>
+			<li><i class="nav_8"></i><a href="DownLoad.html">开源数据集</a> </li>
+            <li class="nav_active"><i class="nav_4"></i><a href="dataset-list.html">数据详情</a> </li>
+            <!-- <li><i class="nav_8"></i><a href="UPLoad.html">上传数据集</a> </li> -->
+            <li><i class="nav_1"></i><a href="index.html">异常检测</a> </li>
+
+        </ul>
+    </div>
+    <div class="header_center left">
+        <h2><strong>基于AI学习的校园网络异常流量检测平台</strong></h2>
+        <p class="color_font"><small>Anomaly traffic detection platform of campus network based on AI learning
+
+</small></p>
+    </div>
+   
+</header>
+<div class="clear"></div>
+
+<!--内容部分-->
+<div class="con1 left" id="car_control">
+
+    <div class="left_table  left bow_shadow">
+        <p class="set_list">
+            <i class="list_i"></i> 数据集列表：</p>
+        <div class="set_list" >
+            <a style="color:white" type = "radio" href="dataset-list.html"><div class="dataset_name">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;APT攻击</div></a>
+            <a type = "radio" href="dataset-badwebsite.html">&nbsp;<p class="dataset_name">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;恶意网站</p></a>
+            <a type = "radio" href="dataset-badware.html">&nbsp;<p class="dataset_name">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;恶意软件</p></a>
+            <a type = "radio" href="dataset-jvnkmail.html">&nbsp;<p class="dataset_name">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;垃圾邮件</p></a>
+            <a type = "radio" href="dataset-normal.html">&nbsp;<p class="dataset_name">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;正常数据</p></a>
+
+        </div>
+        <!-- <ul id="treeDemo" class="ztree"></ul> -->
+    </div>
+    
+<div class="div_table">
+        <div class="left div_table_box">
+            <div class="div_any_child">          
+                <div class="table_p">
+                <div>
+                    <table>
+                        <thead>
+                            <tr> &nbsp;&nbsp;&nbsp;
+                            <th>Flow ID</th> <th>Src IP</th> <th>Src Port</th> <th>Dst IP</th> <th>Dst Port</th> <th>Protocol</th> <th>Timestamp</th> <th>Flow Duration</th>
+                            </tr>
+                        </thead>
+                        <div id="apt">
+                            <tr><td>10.100.1.44-192.5.5.241-63448-53-17</td><td>10.100.1.44</td><td>63448</td><td>192.5.5.241</td><td>53</td><td>17</td><td>22/12/2022 02:20:19 下午</td><td>1762</td></tr>
+                            <tr><td>10.100.1.44-193.0.14.129-6103-53-17</td><td>10.100.1.44</td><td>6103</td><td>193.0.14.129</td><td>53</td><td>17</td><td>22/12/2022 02:20:25 下午</td><td>3288</td></tr>
+                            <tr><td>10.100.1.44-192.5.5.241-16426-53-17</td><td>10.100.1.44</td><td>16426</td><td>192.5.5.241</td><td>53</td><td>17</td><td>22/12/2022 02:20:19 下午</td><td>2530</td></tr>
+                            <tr><td>10.100.1.44-202.12.27.33-16063-53-17</td><td>10.100.1.44</td><td>16063</td><td>202.12.27.33</td><td>53</td><td>17</td><td>22/12/2022 02:20:27 下午</td><td>3415</td></tr>
+                            <tr><td>10.100.1.44-199.7.83.42-29402-53-17</td><td>10.100.1.44</td><td>29402</td><td>199.7.83.42</td><td>53</td><td>17</td><td>22/12/2022 02:20:18 下午</td><td>3435136</td></tr>
+                            <tr><td>10.100.1.44-199.7.83.42-21139-53-17</td><td>10.100.1.44</td><td>21139</td><td>199.7.83.42</td><td>53</td><td>17</td><td>22/12/2022 02:20:18 下午</td><td>2059</td></tr>
+                            <tr><td>10.100.1.44-193.0.14.129-7197-53-17</td><td>10.100.1.44</td><td>7197</td><td>193.0.14.129</td><td>53</td><td>17</td><td>22/12/2022 02:20:25 下午</td><td>3596</td></tr>
+                            <tr><td>10.100.1.44-202.12.27.33-55066-53-17</td><td>10.100.1.44</td><td>55066</td><td>202.12.27.33</td><td>53</td><td>17</td><td>22/12/2022 02:20:27 下午</td><td>3786</td></tr>
+                        </div>
+
+                        </div>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+
+</div>
+
+
+
+
+<script src="js-/table-change.js"></script>
+
+<script src="js/jquery/jQuery-2.2.0.min.js"></script>
+<script src="js/base.js"></script>
+<!-- <script src="js/table1.js"></script> -->
+<script src="js/ztree/jquery.ztree.all-3.5.js"></script>
+<script src="js/listTree.js"></script>
+<script src="js/bstable/js/bootstrap.min.js"></script>
+<script src="js/bstable/js/bootstrap-table.js"></script>
+<script src="js/bstable/js/bootstrap-table-zh-CN.min.js"></script>
+<script src="js/layer_v2.1/layer/layer.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+body{
+    background-color: aliceblue;
+}
+div.navigation{
+    display: fixed;
+    color: black;
+
+    width: 100%;
+    height: 50px;
+    background-color: white;
+}
+div.navigation li{
+    float: left;
+    padding: 0% 5%;
+    text-align:inherit;
+}
+div.navigation li a:hover{
+    color: red;
+}
+
+a{
+    text-decoration: none;
+    color: black;    
+}
+
+ul{
+    list-style-type: none;
+}

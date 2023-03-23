@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页界面</title>
+    <link rel="stylesheet" href="css/base.css">
+</head>
+
+<body>
+<!--顶部-->
+<header class="header left">
+    <div class="left nav">
+        <ul>
+            <li><i class="nav_8"></i><a href="DownLoad.html">开源数据集</a> </li>
+            <li ><i class="nav_4"></i><a href="dataset-list.html">数据详情</a> </li>
+            <!-- <li><i class="nav_8"></i><a href="UPLoad.html">上传数据集</a> </li> -->
+            <li class="nav_active"><i class="nav_1"></i><a href="index.html">异常检测</a> </li>
+        </ul>
+    </div>
+    <div class="header_center left">
+        <h2><strong>基于AI学习的校园网络异常流量检测平台</strong></h2>
+        <p class="color_font"><small>Anomaly traffic detection platform of campus network based on AI learning</small></p>
+    </div>
+
+</header>
+<!--内容部分-->
+<div class="con left">
+    
+    <!--数据总概-->
+   <div class="newban">
+        <div class="newleft fl">数据集：医校网公开数据集2023</div>
+        <!-- <div class="newcenter fl">测试时间：120</div> -->
+        <div class="newright fl">预测结果：精确度99%（最高精确度）</div>
+        <div class="clear"></div>
+   </div>
+    <!--统计分析图-->
+    <div class="div_any">
+
+        <div class="left div_any01">
+
+            <div class="div_any_child1" style="background-color: rgba(70, 145, 211, 0.658);">
+                <div class="div_any_title"><img src="img/title_4.png">决策树混淆矩阵 </div>
+                    <img src="img/RunDataPic/DecisionTree_confmatrix.png"
+                         width=85% height=80%>
+            </div>
+
+            <div class="div_any_child1" style="background-color: rgba(70, 145, 211, 0.658);">
+                <div class="div_any_title"><img src="img/title_2.png">决策树召回率 </div>
+                    &nbsp;&nbsp;&nbsp;<img src="img/RunDataPic/DecisionTree_recall_20times.png" 
+                    width=90% height=85%>
+            </div>
+
+        </div>
+
+        <div class="div_any02 left ">
+            <div class="div_any_child1 div_height" style="background-color: rgba(70, 145, 211, 0.658);">
+                <div class="div_any_title"><img src="img/title_5.png">决策树结构 </div>
+                <p class="newpiccenter"><img src="img/RunDataPic/DecisionTree.png" 
+                    width=100% height=130%></p>
+            </div>
+        </div>
+
+        <div class="right div_any01">
+
+            <div class="div_any_child1" style="background-color: rgba(70, 145, 211, 0.658);">
+                <div class="div_any_title"><img src="img/title_4.png">随机森林混淆矩阵</div>
+                    <p class="newpic3"><img src="img/RunDataPic/RandomForest_test_confmatrix.png" 
+                        width=85% height=80%></p>
+            </div>
+
+            <div class="div_any_child1" style="background-color: rgba(70, 145, 211, 0.658);">
+                <div class="div_any_title"><img src="img/title_5.png">随机森林召回率 </div>
+                &nbsp;&nbsp;&nbsp;<img src="img/RunDataPic/RandomForest_recall_auc_20times.png" 
+                    width=90% height=85%>
+            </div>
+
+        </div>
+       
+    </div>
+    
+</div>
+<script src="js/jquery/jQuery-2.2.0.min.js"></script>
+<script src="js/echarts-all.js"></script>
+<script src="js/base.js"></script>
+<script src="js/index.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=5ieMMexWmzB9jivTq6oCRX9j&callback"></script>
+<script src="js/map.js"></script>
+</body>
+</html>
